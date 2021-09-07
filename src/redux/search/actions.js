@@ -6,18 +6,18 @@ import {
   ERROR_SEARCH,
 } from "./types";
 
-import { getAllProperties } from "../../api/propertiesApi";
+import { getSearched } from "../../api/propertiesApi";
 
 export const setSearch = (value) => ({
   type: SET_SEARCH,
   payload: value,
 });
 
-export const getSearch = () => {
+export const getSearch = (searched) => {
   return async (dispatch) => {
     dispatch(loadingSearch());
 
-    const { data } = await getAllProperties();
+    const { data } = await getSearched(searched);
 
     dispatch({
       type: GET_SEARCH,

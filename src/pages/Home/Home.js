@@ -14,8 +14,9 @@ function Home() {
   const dispatch = useDispatch();
 
   function handleSubmit() {
-    dispatch(setSearch(searchInput.current.value));
-    dispatch(getSearch());
+    const searchedText = searchInput.current.value;
+    dispatch(setSearch(searchedText));
+    dispatch(getSearch(searchedText));
     history.push(DASHBOARD_URL);
   }
 
