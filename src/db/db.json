@@ -29,7 +29,7 @@
     {
       "id": 1,
       "title": "Amazing flat in Molins de Rei",
-      "imgageURL": "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+      "imageURL": "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
       "street": "Avinguda Castellví",
       "number": 10,
       "city": "Molins de Rei",
@@ -56,7 +56,7 @@
     {
       "id": 2,
       "title": "Centric duplex in Barcelona center",
-      "imgageURL": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+      "imageURL": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
       "street": "Aragó",
       "number": 10,
       "city": "Barcelona",
@@ -83,7 +83,7 @@
     {
       "id": 3,
       "title": "Cozy jazz lovers flat",
-      "imgageURL": "https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
+      "imageURL": "https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
       "street": "Sant Bru",
       "number": 60,
       "city": "Badalona",
@@ -110,7 +110,7 @@
     {
       "id": 4,
       "title": "Lightful basement in Andernos",
-      "imgageURL": "https://images.unsplash.com/photo-1582417728413-b2347161b864?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1951&q=80",
+      "imageURL": "https://images.unsplash.com/photo-1582417728413-b2347161b864?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1951&q=80",
       "street": "Sûr Mer",
       "number": 235,
       "city": "Andernos-les-Bains",

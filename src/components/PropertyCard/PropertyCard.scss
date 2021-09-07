@@ -1,7 +1,9 @@
 .property-card {
   .left-card {
     img {
-      object-fit: scale-down;
+      width: 300px;
+      max-height: 120px;
+      object-fit: cover;
     }
   }
 
