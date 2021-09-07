@@ -1,0 +1,17 @@
+* {
+  // outline: 2px solid blue;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .header,
+  .footer {
+    height: 80px;
+  }
+  .main {
+    flex-grow: 1;
+  }
+}

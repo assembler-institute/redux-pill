@@ -14,13 +14,13 @@ function withLayout(WrappedComponent) {
 
   function WrapperComponent({ ...props }) {
     return (
-      <div>
+      <>
         <Header />
         <Main>
           <WrappedComponent {...props} />
         </Main>
         <Footer />
-      </div>
+      </>
     );
   }
   return WrapperComponent;

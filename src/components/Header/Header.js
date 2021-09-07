@@ -2,10 +2,10 @@ import React from "react";
 
 function Header() {
   return (
-    <div>
-      <h1>Flat Finder</h1>
+    <div className="d-flex justify-content-between align-items-center header bg-dark px-4">
+      <h1 className="text-light">Flat Finder</h1>
 
-      <button type="button" class="btn btn-dark">
+      <button type="button" className="btn btn-dark">
         Login
       </button>
     </div>
