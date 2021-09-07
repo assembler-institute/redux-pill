@@ -3,11 +3,10 @@ import { API } from "../constants/routes";
 const axios = require("axios").default;
 
 function makePropertiesApi() {
-  return axios.create({ baseUrl: `${API.MAIN}${API.PROPERTIES}` });
+  return axios.create({ baseURL: `${API.MAIN}${API.PROPERTIES}` });
 }
 
 export function getAllProperties(api = makePropertiesApi()) {
-  console.log(`${API.MAIN}${API.PROPERTIES}`);
   return api.get("");
 }
 
