@@ -9,6 +9,14 @@ import "./FiltersList.scss";
 
 function FiltersList({ foundProperties }) {
   // console.log(foundProperties, "Found properties!");
+  const search = useSelector((state) => state.search.searchedText);
+  // let query = useSelector((state) => state.search.filteredQuery);
+  const dispatch = useDispatch();
+
+  let [query, setQuery] = useState(
+    useSelector((state) => state.search.filteredQuery)
+  );
+
   const [filters, setFilters] = useState({
     condition: { new: false, good: false, reform: false },
     type: {
@@ -31,14 +39,11 @@ function FiltersList({ foundProperties }) {
     equipment: "",
   });
 
-  useEffect(() => {}, [filters]);
+  useEffect(() => {
+    console.log("State query: ", query);
+  }, [filters]);
 
   function handleFilters(e) {
-    const search = useSelector((state) => state.searchedText);
-    let query = useSelector((state) => state.filteredQuery);
-
-    const dispatch = useDispatch();
-
     const filterName = e.target.name;
     const filterValue = e.target.value;
     const stateField = filters[filterName];
@@ -48,11 +53,22 @@ function FiltersList({ foundProperties }) {
       stateField !== null &&
       !Array.isArray(stateField)
     ) {
-      stateField.filterName = e.target.isChecked;
-      query += `&${filterName}=${filterValue}`;
-      //setFilters(...filters, stateField);
+      stateField[filterValue] = e.target.checked;
+      console.log(stateField, e.target.checked);
 
-      console.log(stateField);
+      // Exception for room/bath
+      if (filterValue === "fourOrMore" || filterValue === "threeOrMore") {
+        if (filterValue === "fourOrMore" && !e.target.checked) {
+          setQuery((query += `&${filterName}_gte=4`));
+        } else {
+          setQuery((query += `&${filterName}_gte=3`));
+        }
+      } else {
+        setQuery((query += `&${filterName}=${filterValue}`));
+      }
+
+      console.log(query);
+      setFilters({ ...filters, stateField });
     } else console.log("It's NOT an object");
   }
 
@@ -156,7 +172,7 @@ function FiltersList({ foundProperties }) {
               id="bedroom1"
               autoComplete="off"
               name="room"
-              value="one"
+              value={1}
             />
             <label className="btn btn-outline-dark" htmlFor="bedroom1">
               1
@@ -169,7 +185,7 @@ function FiltersList({ foundProperties }) {
               id="bedroom2"
               autoComplete="off"
               name="room"
-              value="two"
+              value={2}
             />
             <label className="btn btn-outline-dark" htmlFor="bedroom2">
               2
@@ -181,7 +197,7 @@ function FiltersList({ foundProperties }) {
               id="bedroom3"
               autoComplete="off"
               name="room"
-              value="three"
+              value={3}
             />
             <label className="btn btn-outline-dark" htmlFor="bedroom3">
               3
@@ -216,7 +232,7 @@ function FiltersList({ foundProperties }) {
               id="bathroom1"
               autoComplete="off"
               name="bath"
-              value="one"
+              value={1}
             />
             <label className="btn btn-outline-dark" htmlFor="bathroom1">
               1
@@ -229,7 +245,7 @@ function FiltersList({ foundProperties }) {
               id="bathroom2"
               autoComplete="off"
               name="bath"
-              value="two"
+              value={2}
             />
             <label className="btn btn-outline-dark" htmlFor="bathroom2">
               2
