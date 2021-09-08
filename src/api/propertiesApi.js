@@ -10,6 +10,10 @@ export function getAllProperties(api = makePropertiesApi()) {
   return api.get("");
 }
 
-export function getPropertie(productId, api = makePropertiesApi()) {
+export function getSearched(searched, api = makePropertiesApi()) {
+  return api.get(`?q=${searched}`);
+}
+
+export function getProperty(productId, api = makePropertiesApi()) {
   return api.get(`/${productId}`);
 }

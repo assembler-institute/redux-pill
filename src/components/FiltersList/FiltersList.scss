@@ -1,0 +1,21 @@
+.filters-block {
+  min-height: 240px;
+  .filter-column {
+    min-height: 100%;
+
+    hr {
+      border-color: lightgrey;
+    }
+    .filter-wrapper {
+      height: 80px;
+
+      .filter-title {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.ui5-slider-progress {
+  background: black;
+}
