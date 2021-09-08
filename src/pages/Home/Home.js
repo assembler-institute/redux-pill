@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setSearch, getSearch } from "../../redux/search/actions";
+import { getSearch } from "../../redux/search/actions";
 
 import { DASHBOARD_URL } from "../../constants/routes";
 
@@ -15,7 +15,6 @@ function Home() {
 
   function handleSubmit() {
     const searchedText = searchInput.current.value;
-    dispatch(setSearch(searchedText));
     dispatch(getSearch(searchedText));
     history.push(DASHBOARD_URL);
   }

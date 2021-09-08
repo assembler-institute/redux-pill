@@ -15,6 +15,8 @@ export const setSearch = (value) => ({
 
 export const getSearch = (searched) => {
   return async (dispatch) => {
+    dispatch(resetSearch());
+    dispatch(setSearch(searched));
     dispatch(loadingSearch());
 
     const { data } = await getSearched(searched);
@@ -37,3 +39,5 @@ export const loadingSearch = () => ({
 export const errorSearch = () => ({
   type: ERROR_SEARCH,
 });
+
+export const setFilters = () => {};
