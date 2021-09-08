@@ -4,11 +4,11 @@ import { RangeSlider } from "@ui5/webcomponents-react";
 
 import Searchbar from "../../components/Searchbar";
 import CustomCheckbox from "../../components/CustomCheckbox";
+import { getQuery } from "../../utilities/getQuery";
 
 import "./FiltersList.scss";
 
 function FiltersList({ foundProperties }) {
-  // console.log(foundProperties, "Found properties!");
   const search = useSelector((state) => state.search.searchedText);
   const stateFilters = useSelector((state) => state.search.filters);
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function FiltersList({ foundProperties }) {
   const [filters, setFilters] = useState(stateFilters);
 
   useEffect(() => {
-    console.log("State filters: ", filters);
+    //console.log("State filters: ", filters);
   }, [filters]);
 
   function handleFilters(e) {
@@ -33,13 +33,16 @@ function FiltersList({ foundProperties }) {
       !Array.isArray(stateField)
     ) {
       stateField[filterValue] = e.target.checked;
-      console.log(stateField);
       setFilters({ ...filters, stateField });
+    } else if (e.target.type === "checkbox") {
+      setFilters({ ...filters, [filterValue]: e.target.checked });
+    } else if (e.target.type === "select-one") {
+      setFilters({ ...filters, [filterName]: filterValue });
     } else {
-      console.log("Others --> ", filterValue, e.target.checked);
-      const testName = String(filterValue);
-      setFilters({ ...filters, testName: e.target.checked });
+      //Range slider function goes here
     }
+
+    getQuery(filters);
   }
 
   // Do function to get the highest price
@@ -248,7 +251,7 @@ function FiltersList({ foundProperties }) {
           <RangeSlider
             className=""
             max={500000}
-            onChange={function noRefCheck() {}}
+            onChange={handleFilters}
             onInput={function noRefCheck() {}}
             slot=""
             style={{
@@ -267,6 +270,7 @@ function FiltersList({ foundProperties }) {
             className="form-select"
             aria-label="Publication select"
             name="publication_date"
+            onChange={handleFilters}
           >
             <option defaultValue>Select a date</option>
             <option value="2">Last 48 hours</option>

@@ -14,7 +14,7 @@ const initialState = {
     },
     room: { 0: false, 1: false, 2: false, 3: false, fourOrMore: false },
     bath: { 1: false, 2: false, threeOrMore: false },
-    size: 0,
+    //size: 0,
     minPrice: 0,
     maxPrice: 0,
     pet: false,
