@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { RangeSlider } from "@ui5/webcomponents-react";
 
 import Searchbar from "../../components/Searchbar";
@@ -8,6 +9,52 @@ import "./FiltersList.scss";
 
 function FiltersList({ foundProperties }) {
   // console.log(foundProperties, "Found properties!");
+  const [filters, setFilters] = useState({
+    condition: { new: false, good: false, reform: false },
+    type: {
+      "flat/apartment": false,
+      duplex: false,
+      house: false,
+      penthouse: false,
+    },
+    room: { one: false, two: false, three: false, fourOrMore: false },
+    bath: { one: false, two: false, threeOrMore: false },
+    size: 0,
+    minPrice: 0,
+    maxPrice: 0,
+    pet: false,
+    lift: false,
+    garden: false,
+    air: false,
+    terrace: false,
+    publication_date: "",
+    equipment: "",
+  });
+
+  useEffect(() => {}, [filters]);
+
+  function handleFilters(e) {
+    const search = useSelector((state) => state.searchedText);
+    let query = useSelector((state) => state.filteredQuery);
+
+    const dispatch = useDispatch();
+
+    const filterName = e.target.name;
+    const filterValue = e.target.value;
+    const stateField = filters[filterName];
+
+    if (
+      typeof stateField === "object" &&
+      stateField !== null &&
+      !Array.isArray(stateField)
+    ) {
+      stateField.filterName = e.target.isChecked;
+      query += `&${filterName}=${filterValue}`;
+      //setFilters(...filters, stateField);
+
+      console.log(stateField);
+    } else console.log("It's NOT an object");
+  }
 
   // Do function to get the highest price
 
@@ -24,10 +71,30 @@ function FiltersList({ foundProperties }) {
         <div className="row mb-4 px-2 filter-wrapper">
           <div className="fs-p mb-2 filter-title">Type of home</div>
           <div className="row row-cols-1 row-cols-md-2">
-            <CustomCheckbox name="Flat/Aparment" />
-            <CustomCheckbox name="Duplex" />
-            <CustomCheckbox name="House" />
-            <CustomCheckbox name="Penthouse" />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="Flat/Aparment"
+              name="type"
+              value="flat/apartment"
+            />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="Duplex"
+              name="type"
+              value="duplex"
+            />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="House"
+              name="type"
+              value="house"
+            />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="Penthouse"
+              name="type"
+              value="penthouse"
+            />
           </div>
         </div>
 
@@ -36,9 +103,24 @@ function FiltersList({ foundProperties }) {
         <div className="mb-4 px-2 filter-wrapper">
           <div className="fs-p mb-2 filter-title">Condition</div>
           <div className="row row-cols-2">
-            <CustomCheckbox name="New homes" />
-            <CustomCheckbox name="Good condition" />
-            <CustomCheckbox name="Needs reform" />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="New homes"
+              name="condition"
+              value="new"
+            />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="Good condition"
+              name="condition"
+              value="good"
+            />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="Needs reform"
+              name="condition"
+              value="reform"
+            />
             {/* !!! TODO to be solved */}
             <p className="col"></p>
           </div>
@@ -56,9 +138,12 @@ function FiltersList({ foundProperties }) {
           >
             <input
               type="checkbox"
+              onChange={handleFilters}
               className="btn-check"
               id="bedroom0"
               autoComplete="off"
+              name="room"
+              value={0}
             />
             <label className="btn btn-outline-dark" htmlFor="bedroom0">
               0 (Studio flat)
@@ -66,9 +151,12 @@ function FiltersList({ foundProperties }) {
 
             <input
               type="checkbox"
+              onChange={handleFilters}
               className="btn-check"
               id="bedroom1"
               autoComplete="off"
+              name="room"
+              value="one"
             />
             <label className="btn btn-outline-dark" htmlFor="bedroom1">
               1
@@ -76,27 +164,36 @@ function FiltersList({ foundProperties }) {
 
             <input
               type="checkbox"
+              onChange={handleFilters}
               className="btn-check"
               id="bedroom2"
               autoComplete="off"
+              name="room"
+              value="two"
             />
             <label className="btn btn-outline-dark" htmlFor="bedroom2">
               2
             </label>
             <input
               type="checkbox"
+              onChange={handleFilters}
               className="btn-check"
               id="bedroom3"
               autoComplete="off"
+              name="room"
+              value="three"
             />
             <label className="btn btn-outline-dark" htmlFor="bedroom3">
               3
             </label>
             <input
               type="checkbox"
+              onChange={handleFilters}
               className="btn-check"
               id="bedroom4"
               autoComplete="off"
+              name="room"
+              value="fourOrMore"
             />
             <label className="btn btn-outline-dark" htmlFor="bedroom4">
               4 or +
@@ -114,9 +211,12 @@ function FiltersList({ foundProperties }) {
           >
             <input
               type="checkbox"
+              onChange={handleFilters}
               className="btn-check"
               id="bathroom1"
               autoComplete="off"
+              name="bath"
+              value="one"
             />
             <label className="btn btn-outline-dark" htmlFor="bathroom1">
               1
@@ -124,9 +224,12 @@ function FiltersList({ foundProperties }) {
 
             <input
               type="checkbox"
+              onChange={handleFilters}
               className="btn-check"
               id="bathroom2"
               autoComplete="off"
+              name="bath"
+              value="two"
             />
             <label className="btn btn-outline-dark" htmlFor="bathroom2">
               2
@@ -134,9 +237,12 @@ function FiltersList({ foundProperties }) {
 
             <input
               type="checkbox"
+              onChange={handleFilters}
               className="btn-check"
               id="bathroom3"
               autoComplete="off"
+              name="bath"
+              value="threeOrMore"
             />
             <label className="btn btn-outline-dark" htmlFor="bathroom3">
               3 or +
@@ -171,11 +277,15 @@ function FiltersList({ foundProperties }) {
         {/* Publication date */}
         <div className="row mb-4 px-2 filter-wrapper">
           <div className="fs-p mb-2 filter-title">Publication date</div>
-          <select className="form-select" aria-label="Publication select">
+          <select
+            className="form-select"
+            aria-label="Publication select"
+            name="publication_date"
+          >
             <option defaultValue>Select a date</option>
-            <option value="1">Last 48 hours</option>
-            <option value="2">Last week</option>
-            <option value="3">Last month</option>
+            <option value="2">Last 48 hours</option>
+            <option value="7">Last week</option>
+            <option value="30">Last month</option>
           </select>
         </div>
         <hr />
@@ -198,12 +308,42 @@ function FiltersList({ foundProperties }) {
         <div className="row mb-4 px-2 filter-wrapper">
           <div className="fs-p mb-2 filter-title">MoreFilters</div>
           <div className="row row-cols-1 row-cols-md-2">
-            <CustomCheckbox name="Pet friendly" />
-            <CustomCheckbox name="Air conditioning" />
-            <CustomCheckbox name="Swimming pool" />
-            <CustomCheckbox name="Garden" />
-            <CustomCheckbox name="Terrace" />
-            <CustomCheckbox name="Lift" />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="Pet friendly"
+              name="pet"
+              value="pet"
+            />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="Air conditioning"
+              name="air_conditioning"
+              value="air_conditioning"
+            />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="Swimming pool"
+              name="swimming_pool"
+              value="swimming_pool"
+            />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="Garden"
+              name="garden"
+              value="garden"
+            />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="Terrace"
+              name="terrace"
+              value="terrace"
+            />
+            <CustomCheckbox
+              onChange={handleFilters}
+              title="Lift"
+              name="lift"
+              value="lift"
+            />
           </div>
         </div>
       </div>
