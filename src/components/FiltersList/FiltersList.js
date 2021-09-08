@@ -20,7 +20,7 @@ function FiltersList({ foundProperties }) {
   const [filters, setFilters] = useState(stateFilters);
 
   useEffect(() => {
-    //console.log("State filters: ", filters);
+    getQuery(filters);
   }, [filters]);
 
   function handleFilters(e) {
@@ -33,7 +33,7 @@ function FiltersList({ foundProperties }) {
       !Array.isArray(stateField)
     ) {
       stateField[filterValue] = e.target.checked;
-      setFilters({ ...filters, stateField });
+      setFilters({ ...filters, [filterName]: filterValue });
     } else if (e.target.type === "checkbox") {
       setFilters({ ...filters, [filterValue]: e.target.checked });
     } else if (e.target.type === "select-one") {
@@ -41,8 +41,6 @@ function FiltersList({ foundProperties }) {
     } else {
       //Range slider function goes here
     }
-
-    getQuery(filters);
   }
 
   // Do function to get the highest price

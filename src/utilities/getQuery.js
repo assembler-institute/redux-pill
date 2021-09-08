@@ -4,20 +4,39 @@ export function getQuery(object) {
   for (const property in object) {
     if (typeof object[property] !== "object" && object[property] !== false) {
       if (object[property] === true) {
+        // Boolean properties
         query += `&${property}=${object[property]}`;
       } else if (
         object[property] !== 0 &&
-        typeof object["minPrice"] === "number"
+        typeof object[property] === "number"
       ) {
-        query += `&price_gte${object["minPrice"]}`;
-      } else if (
-        object[property] !== 0 &&
-        typeof object["maxPrice"] === "number"
-      ) {
-        query += `&price_gte${object["maxPrice"]}`;
+        // Numbers (price)
+        if (property === "minPrice") {
+          query += `&price_gte=${object[property]}`;
+        } else {
+          query += `&price_lte=${object[property]}`;
+        }
+      } else if (object[property] !== "") {
+        // Empty strings
+        query += `&${property}=${object[property]}`;
+      }
+    } else {
+      for (const innerProperty in object[property]) {
+        if (object[property][innerProperty] === true) {
+          console.log("inside inner property", innerProperty);
+
+          // !!! fourOrMore & threeOrMore
+
+          if (innerProperty === "fourOrMore") {
+            query += "&room_gte=4";
+          } else if (innerProperty === "threeOrMore") {
+            query += "&room_gte=3";
+          } else {
+            query += `&${property}=${innerProperty}`;
+          }
+        }
       }
     }
-    console.log(typeof object[property]);
   }
   console.log(query, "Final query");
 }
