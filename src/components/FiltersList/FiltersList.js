@@ -10,66 +10,36 @@ import "./FiltersList.scss";
 function FiltersList({ foundProperties }) {
   // console.log(foundProperties, "Found properties!");
   const search = useSelector((state) => state.search.searchedText);
-  // let query = useSelector((state) => state.search.filteredQuery);
+  const stateFilters = useSelector((state) => state.search.filters);
   const dispatch = useDispatch();
 
   let [query, setQuery] = useState(
     useSelector((state) => state.search.filteredQuery)
   );
 
-  const [filters, setFilters] = useState({
-    condition: { new: false, good: false, reform: false },
-    type: {
-      "flat/apartment": false,
-      duplex: false,
-      house: false,
-      penthouse: false,
-    },
-    room: { one: false, two: false, three: false, fourOrMore: false },
-    bath: { one: false, two: false, threeOrMore: false },
-    size: 0,
-    minPrice: 0,
-    maxPrice: 0,
-    pet: false,
-    lift: false,
-    garden: false,
-    air: false,
-    terrace: false,
-    publication_date: "",
-    equipment: "",
-  });
+  const [filters, setFilters] = useState(stateFilters);
 
   useEffect(() => {
-    console.log("State query: ", query);
+    console.log("State filters: ", filters);
   }, [filters]);
 
   function handleFilters(e) {
     const filterName = e.target.name;
     const filterValue = e.target.value;
-    const stateField = filters[filterName];
-
+    let stateField = filters[filterName];
     if (
       typeof stateField === "object" &&
       stateField !== null &&
       !Array.isArray(stateField)
     ) {
       stateField[filterValue] = e.target.checked;
-      console.log(stateField, e.target.checked);
-
-      // Exception for room/bath
-      if (filterValue === "fourOrMore" || filterValue === "threeOrMore") {
-        if (filterValue === "fourOrMore" && !e.target.checked) {
-          setQuery((query += `&${filterName}_gte=4`));
-        } else {
-          setQuery((query += `&${filterName}_gte=3`));
-        }
-      } else {
-        setQuery((query += `&${filterName}=${filterValue}`));
-      }
-
-      console.log(query);
+      console.log(stateField);
       setFilters({ ...filters, stateField });
-    } else console.log("It's NOT an object");
+    } else {
+      console.log("Others --> ", filterValue, e.target.checked);
+      const testName = String(filterValue);
+      setFilters({ ...filters, testName: e.target.checked });
+    }
   }
 
   // Do function to get the highest price
