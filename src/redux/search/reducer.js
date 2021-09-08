@@ -41,8 +41,9 @@ const reducer = (state = initialState, action) => {
     case SET_FILTERS: {
       return {
         ...state,
+        filterActive: true,
+        isLoading: false,
         filters: {
-          filter: true,
           ...action.payload,
         },
       };
