@@ -48,7 +48,8 @@
       "air_conditioning": true,
       "swimming_pool": false,
       "terrace": true,
-      "publication_date": "2020/12/01 01:01:01"
+      "publication_date": "2020/12/01 01:01:01",
+      "image": "https://images.pexels.com/photos/7031413/pexels-photo-7031413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
     },
     {
       "id": 2,
@@ -72,7 +73,8 @@
       "air_conditioning": true,
       "swimming_pool": false,
       "terrace": true,
-      "publication_date": "2020/12/01 01:01:01"
+      "publication_date": "2020/12/01 01:01:01",
+      "image": "https://images.pexels.com/photos/6957085/pexels-photo-6957085.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
     }
   ],
   "favorite": [
