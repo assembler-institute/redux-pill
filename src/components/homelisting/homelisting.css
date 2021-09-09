@@ -1,0 +1,16 @@
+.searchBar {
+  outline: none;
+  padding-left: 13px;
+  border: none;
+}
+
+.lineSearch {
+  width: 450px;
+  margin-left: 427px;
+  height: 1px;
+  background-color: black;
+}
+
+.searchIcon {
+  cursor: pointer;
+}
