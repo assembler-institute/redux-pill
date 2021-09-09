@@ -1,0 +1,33 @@
+.container {
+  padding-top: 100px;
+}
+.firstFilter {
+  display: flex;
+}
+
+.house,
+.terrace {
+  margin-left: 17px;
+}
+
+.penthouse {
+  margin-left: 75px;
+}
+
+.lift {
+  margin-left: 37px;
+}
+
+.filtersTitle {
+  text-align: center;
+  font-weight: bold;
+}
+
+.badge {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.btn {
+  margin-top: 20px;
+}

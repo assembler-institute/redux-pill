@@ -1,10 +1,23 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import SearchIcon from "@material-ui/icons/Search";
+import "./homelisting.css";
 
 export default function HomeListing() {
   return (
     <div className="container">
-      <div className="row">
+      <form>
+        <input
+          className="searchBar mt-5 col-md-4"
+          type="text"
+          placeholder="Type your goal city"
+          autoFocus
+        />
+        <SearchIcon className="searchIcon" />
+
+        <div className="lineSearch"></div>
+      </form>
+      <div className="row mt-5">
         <div className="col-md-3">
           <div className="card">
             <img alt="" src="" />
@@ -14,7 +27,9 @@ export default function HomeListing() {
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </p>
-              {/* <Link href="#" className="btn btn-primary">Go somewhere</Link> */}
+              <Link to="" className="btn btn-outline-dark">
+                Rent now!
+              </Link>
             </div>
           </div>
         </div>
@@ -27,7 +42,9 @@ export default function HomeListing() {
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </p>
-              {/* <Link href="#" className="btn btn-primary">Go somewhere</Link> */}
+              <Link to="" className="btn btn-outline-dark">
+                Rent now!
+              </Link>
             </div>
           </div>
         </div>
@@ -40,7 +57,9 @@ export default function HomeListing() {
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </p>
-              {/* <Link href="#" className="btn btn-primary">Go somewhere</Link> */}
+              <Link to="" className="btn btn-outline-dark">
+                Rent now!
+              </Link>
             </div>
           </div>
         </div>
@@ -53,7 +72,9 @@ export default function HomeListing() {
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </p>
-              {/* <Link href="#" className="btn btn-primary">Go somewhere</Link> */}
+              <Link to="" className="btn btn-outline-dark">
+                Rent now!
+              </Link>
             </div>
           </div>
         </div>
