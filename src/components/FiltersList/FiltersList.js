@@ -33,7 +33,8 @@ function FiltersList({ foundProperties }) {
       !Array.isArray(stateField)
     ) {
       stateField[filterValue] = e.target.checked;
-      setFilters({ ...filters, [filterName]: filterValue });
+      console.log(filters);
+      setFilters({ ...filters });
     } else if (e.target.type === "checkbox") {
       setFilters({ ...filters, [filterValue]: e.target.checked });
     } else if (e.target.type === "select-one") {
