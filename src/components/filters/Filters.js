@@ -2,6 +2,15 @@ import React from "react";
 import "./filters.css";
 
 export default function Filters() {
+  function handleOutputRange() {
+    const slider = document.getElementById("customRange2");
+    var output = document.getElementById("rangeValue");
+    output.innerHTML = slider.value;
+    slider.oninput = function () {
+      output.innerHTML = this.value;
+    };
+  }
+
   return (
     <div className="container">
       <div className="row">
@@ -120,6 +129,7 @@ export default function Filters() {
             Choose your price
           </label>
           <input
+            onChange={handleOutputRange}
             type="range"
             class="form-range"
             min="100"
@@ -129,12 +139,6 @@ export default function Filters() {
           <p>
             <span id="rangeValue"></span>
           </p>
-          {/* {var slider = document.getElementById("customRange2");
-                  var output = document.getElementById("rangeValue");
-                  output.innerHTML = slider.value;
-                  slider.oninput = function(){
-                      output.innerHTML = this.value;
-                  }}; */}
         </div>
         <div className="col-md-3 mt-5">
           <p className="filtersTitle">Publication date</p>
