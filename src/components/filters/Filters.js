@@ -2,6 +2,7 @@ import React from "react";
 import "./filters.css";
 
 export default function Filters() {
+
   function handleOutputRange() {
     const slider = document.getElementById("customRange2");
     var output = document.getElementById("rangeValue");
