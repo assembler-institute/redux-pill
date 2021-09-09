@@ -1,6 +1,5 @@
 export function getQuery(object) {
   let query = "";
-  console.log(object, "object");
   for (const property in object) {
     if (typeof object[property] !== "object" && object[property] !== false) {
       if (object[property] === true) {
@@ -23,10 +22,6 @@ export function getQuery(object) {
     } else {
       for (const innerProperty in object[property]) {
         if (object[property][innerProperty] === true) {
-          console.log("inside inner property", innerProperty);
-
-          // !!! fourOrMore & threeOrMore
-
           if (innerProperty === "fourOrMore") {
             query += "&room_gte=4";
           } else if (innerProperty === "threeOrMore") {
@@ -39,4 +34,6 @@ export function getQuery(object) {
     }
   }
   console.log(query, "Final query");
+
+  return query;
 }
