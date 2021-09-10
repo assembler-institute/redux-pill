@@ -31,3 +31,14 @@
 .btn {
   margin-top: 20px;
 }
+.lineSearch {
+  margin-top: 10px;
+  margin-left: 0;
+  width: 100%;
+  max-width: 450px;
+}
+
+.searchBar__container {
+  width: 100%;
+  max-width: 450px;
+}

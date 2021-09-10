@@ -4,7 +4,7 @@ import "./dashboard.css";
 export default function Dashboard() {
   return (
     <div className="container">
-      <table class="table mt-5">
+      <table className="table mt-5">
         <thead>
           <tr>
             <th scope="col">Type of home</th>
@@ -55,7 +55,7 @@ export default function Dashboard() {
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-outline-dark btn-lg mt-5">
+      <button className="btn btn-outline-dark btn-lg mt-5">
         Download insights
       </button>
     </div>
