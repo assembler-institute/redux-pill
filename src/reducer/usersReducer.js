@@ -16,9 +16,9 @@ async function getAllUsers(api = makeApi()) {
   return api.get(`/`);
 }
 // traemos solo un usuario
-async function getUser(userId, api = makeApi()) {
-  return api.get(`/${userId}`);
-}
+// async function getUser(userId, api = makeApi()) {
+//   return api.get(`/${userId}`);
+// }
 // creamos la url para hacer la peticion axios cn axios.create()
 export const makeApi = () => {
   return axios.create({
