@@ -31,7 +31,7 @@ export default function Filters() {
       <section className="px-5">
         <div className="row px-5">
           <div className="col-md-3">
-            <p className="filtersTitle mt-5">Type of home</p>
+            <p className="filtersTitle mt-4s">Type of home</p>
             <div className="firstFilter">
               <div className="form-check">
                 <input
