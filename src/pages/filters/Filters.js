@@ -1,8 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import "./filters.css";
 import SearchIcon from "@material-ui/icons/Search";
 
 export default function Filters() {
+  const dispatch = useDispatch();
+
   function handleOutputRange() {
     const slider = document.getElementById("customRange2");
     var output = document.getElementById("rangeValue");
@@ -10,6 +13,13 @@ export default function Filters() {
     slider.oninput = function () {
       output.innerHTML = this.value;
     };
+  }
+
+  function handleChange(e) {
+    dispatch({
+      type: "toggle/typeOfHome",
+      payload: { typeOfHome: { [e.target.name]: e.target.checked } },
+    });
   }
 
   return (
@@ -36,8 +46,9 @@ export default function Filters() {
               <div className="form-check">
                 <input
                   className="form-check-input"
+                  name="flatCheckbox"
                   type="checkbox"
-                  value=""
+                  onChange={handleChange}
                   id="flatChecked"
                 />
                 <label className="form-check-label" htmlFor="flatChecked">
@@ -47,8 +58,9 @@ export default function Filters() {
               <div className="form-check house">
                 <input
                   className="form-check-input"
+                  name="houseCheckbox"
                   type="checkbox"
-                  value=""
+                  onChange={handleChange}
                   id="houseChecked"
                 />
                 <label className="form-check-label" htmlFor="houseChecked">
@@ -61,8 +73,9 @@ export default function Filters() {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
+                  name="duplexCheckbox"
                   id="duplexChecked"
+                  onChange={handleChange}
                 />
                 <label className="form-check-label" htmlFor="duplexChecked">
                   Duplex
@@ -72,8 +85,9 @@ export default function Filters() {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
+                  name="penthouseCheckbox"
                   id="PenthousesChecked"
+                  onChange={handleChange}
                 />
                 <label className="form-check-label" htmlFor="PenthousesChecked">
                   Penthouses
@@ -158,10 +172,10 @@ export default function Filters() {
           </div>
           <div className="col-md-3 mt-4">
             <p className="filtersTitle">Bedrooms</p>
-            <span className="badge rounded-pill bg-dark">1</span>
-            <span className="badge rounded-pill bg-dark">2</span>
-            <span className="badge rounded-pill bg-dark">3</span>
-            <span className="badge bg-dark text-light">4 or +</span>
+            <button className="btnBed btn btn-dark btn-sm">1</button>
+            <button className="btnBed btn btn-dark btn-sm">2</button>
+            <button className="btnBed btn btn-dark btn-sm">3</button>
+            <button className="btnBed btn btn-dark btn-sm">4 or +</button>
           </div>
           <div className="col-md-3 mt-4">
             <p className="filtersTitle">Condition</p>
