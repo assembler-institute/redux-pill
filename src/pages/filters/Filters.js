@@ -15,10 +15,14 @@ export default function Filters() {
     };
   }
 
-  function handleChange(e) {
+  function handleChange(nameValue, inputValue) {
     dispatch({
       type: "toggle/typeOfHome",
-      payload: { typeOfHome: { [e.target.name]: e.target.checked } },
+      payload: {
+        typeOfHome: {
+          [nameValue]: inputValue,
+        },
+      },
     });
   }
 
@@ -48,7 +52,9 @@ export default function Filters() {
                   className="form-check-input"
                   name="flatCheckbox"
                   type="checkbox"
-                  onChange={handleChange}
+                  onChange={(e) =>
+                    handleChange(e.target.name, e.target.checked)
+                  }
                   id="flatChecked"
                 />
                 <label className="form-check-label" htmlFor="flatChecked">
@@ -60,7 +66,9 @@ export default function Filters() {
                   className="form-check-input"
                   name="houseCheckbox"
                   type="checkbox"
-                  onChange={handleChange}
+                  onChange={(e) =>
+                    handleChange(e.target.name, e.target.checked)
+                  }
                   id="houseChecked"
                 />
                 <label className="form-check-label" htmlFor="houseChecked">
@@ -75,7 +83,9 @@ export default function Filters() {
                   type="checkbox"
                   name="duplexCheckbox"
                   id="duplexChecked"
-                  onChange={handleChange}
+                  onChange={(e) =>
+                    handleChange(e.target.name, e.target.checked)
+                  }
                 />
                 <label className="form-check-label" htmlFor="duplexChecked">
                   Duplex
@@ -87,7 +97,9 @@ export default function Filters() {
                   type="checkbox"
                   name="penthouseCheckbox"
                   id="PenthousesChecked"
-                  onChange={handleChange}
+                  onChange={(e) =>
+                    handleChange(e.target.name, e.target.checked)
+                  }
                 />
                 <label className="form-check-label" htmlFor="PenthousesChecked">
                   Penthouses
