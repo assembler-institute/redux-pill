@@ -26,6 +26,24 @@ export default function Filters() {
     });
   }
 
+  function handleMoreFilters(nameValue, inputValue) {
+    dispatch({
+      type: "toggle/moreFilters",
+      payload: {
+        moreFilters: {
+          [nameValue]: inputValue,
+        },
+      },
+    });
+  }
+
+  // function handleMoreBedrooms(e) {
+  //   dispatch({
+  //     type: "toggle/bedrooms",
+  //     payload: { bedrooms: e.target.value },
+  //   });
+  // }
+
   return (
     <div className="container-fluid px-5">
       <div className="d-flex flex-row justify-content-center pt-3">
@@ -114,10 +132,13 @@ export default function Filters() {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckChecked"
+                  id="petsAllowed"
+                  name="petsAllowed"
+                  onChange={(e) =>
+                    handleMoreFilters(e.target.name, e.target.checked)
+                  }
                 />
-                <label className="form-check-label" htmlFor="flexCheckChecked">
+                <label className="form-check-label" htmlFor="petsAllowed">
                   Pets allowed
                 </label>
               </div>
@@ -125,10 +146,13 @@ export default function Filters() {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckChecked"
+                  name="lift"
+                  onChange={(e) =>
+                    handleMoreFilters(e.target.name, e.target.checked)
+                  }
+                  id="lift"
                 />
-                <label className="form-check-label" htmlFor="flexCheckChecked">
+                <label className="form-check-label" htmlFor="lift">
                   Lift
                 </label>
               </div>
@@ -138,10 +162,13 @@ export default function Filters() {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckChecked"
+                  name="garden"
+                  onChange={(e) =>
+                    handleMoreFilters(e.target.name, e.target.checked)
+                  }
+                  id="garden"
                 />
-                <label className="form-check-label" htmlFor="flexCheckChecked">
+                <label className="form-check-label" htmlFor="garden">
                   Garden
                 </label>
               </div>
@@ -149,10 +176,13 @@ export default function Filters() {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckChecked"
+                  name="airConditioning"
+                  onChange={(e) =>
+                    handleMoreFilters(e.target.name, e.target.checked)
+                  }
+                  id="airConditioning"
                 />
-                <label className="form-check-label" htmlFor="flexCheckChecked">
+                <label className="form-check-label" htmlFor="airConditioning">
                   Air conditioning
                 </label>
               </div>
@@ -162,10 +192,13 @@ export default function Filters() {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckChecked"
+                  name="swimmingPool"
+                  onChange={(e) =>
+                    handleMoreFilters(e.target.name, e.target.checked)
+                  }
+                  id="swimmingPool"
                 />
-                <label className="form-check-label" htmlFor="flexCheckChecked">
+                <label className="form-check-label" htmlFor="swimmingPool">
                   Swimming pool
                 </label>
               </div>
@@ -173,10 +206,13 @@ export default function Filters() {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckChecked"
+                  name="terrace"
+                  onChange={(e) =>
+                    handleMoreFilters(e.target.name, e.target.checked)
+                  }
+                  id="terrace"
                 />
-                <label className="form-check-label" htmlFor="flexCheckChecked">
+                <label className="form-check-label" htmlFor="terrace">
                   Terrace
                 </label>
               </div>
@@ -184,10 +220,18 @@ export default function Filters() {
           </div>
           <div className="col-md-3 mt-4">
             <p className="filtersTitle">Bedrooms</p>
-            <button className="btnBed btn btn-dark btn-sm">1</button>
-            <button className="btnBed btn btn-dark btn-sm">2</button>
-            <button className="btnBed btn btn-dark btn-sm">3</button>
-            <button className="btnBed btn btn-dark btn-sm">4 or +</button>
+            <button className="btnBed btn btn-dark btn-sm" value="1">
+              1
+            </button>
+            <button className="btnBed btn btn-dark btn-sm" value="2">
+              2
+            </button>
+            <button className="btnBed btn btn-dark btn-sm" value="3">
+              3
+            </button>
+            <button className="btnBed btn btn-dark btn-sm" value="4">
+              4 or +
+            </button>
           </div>
           <div className="col-md-3 mt-4">
             <p className="filtersTitle">Condition</p>

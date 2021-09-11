@@ -6,7 +6,7 @@ const initialState = {
     penthouseCheckbox: false,
   },
   moreFilters: {
-    petsAllwed: false,
+    petsAllowed: false,
     garden: false,
     swimmingPool: false,
     airConditioning: false,
@@ -23,12 +23,15 @@ const initialState = {
 export const FilterReducer = (state = initialState, action) => {
   switch (action.type) {
     case "toggle/typeOfHome":
-      const target = state.typeOfHome;
-      const source = action.payload.typeOfHome;
-      Object.assign(target, source);
+      const typeOfHomeFromPastState = state.typeOfHome;
+      const typeOfHomeFromNewState = action.payload.typeOfHome;
+      Object.assign(typeOfHomeFromPastState, typeOfHomeFromNewState);
       return {...state};
     case "toggle/moreFilters":
-      return state;
+      const moreFiltersFromPastState = state.moreFilters;
+      const moreFiltersFromNewState = action.payload.moreFilters;
+      Object.assign(moreFiltersFromPastState, moreFiltersFromNewState);
+      return {...state};
     case "toggle/bedrooms":
       return state;
     case "toggle/condition":
