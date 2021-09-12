@@ -1,19 +1,86 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import "./filters.css";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { GetApi } from "../../reducer/propertiesReducer.js";
 import SearchIcon from "@material-ui/icons/Search";
+import HomeListing from "../../components/homelisting/HomeListing";
+import "./filters.css";
 
 export default function Filters() {
+  const allProperties = useSelector((state) => state.propertiesReducer);
+  const currentFilterReducer = useSelector((state) => state.FilterReducer);
+  const [isClicked, setIsClicked] = useState(false);
+  const [activeBtn, setActiveBtn] = useState(true);
+  const [cleanedProperties, setCleanedProperties] = useState([]);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(GetApi());
+  }, [dispatch]);
+
+  function filterProperties() {
+    setIsClicked(true);
+    setActiveBtn(false);
+    const filteredProperties = [];
+    allProperties[0].map((property) => {
+      if (currentFilterReducer.searchBar === property.city) {
+        if (
+          currentFilterReducer.typeOfHome.flatCheckbox &&
+          property.type === "flat/apartment"
+        ) {
+          filteredProperties.push(property);
+        }
+        if (
+          currentFilterReducer.typeOfHome.houseCheckbox &&
+          property.type === "house"
+        ) {
+          filteredProperties.push(property);
+        }
+        if (
+          currentFilterReducer.typeOfHome.duplexCheckbox &&
+          property.type === "duplex"
+        ) {
+          filteredProperties.push(property);
+        }
+        if (
+          currentFilterReducer.typeOfHome.penthouseCheckbox &&
+          property.type === "penthouse"
+        ) {
+          filteredProperties.push(property);
+        }
+        // filteredProperties.push(property);
+      }
+
+      // return setFilteredProperties(filteredProperties);
+    });
+
+    const notRepeatedproperties = filteredProperties.filter(
+      deleteRepeatedProperties
+    );
+    setCleanedProperties(notRepeatedproperties);
+    // console.log(filteredProperties);
+    // console.log(notRepeatedproperties);
+
+    if (filteredProperties.length === 0) {
+      setIsClicked(false);
+    }
+    // console.log(filteredproperties);
+  }
+
+  function deleteRepeatedProperties(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
   function handleSearchBar(e) {
+    e.preventDefault();
+    setActiveBtn(true);
     dispatch({
       type: "toggle/searchBar",
-      payload: { searchBar: e.target.value },
+      payload: { searchBar: e.target.value.toLowerCase() },
     });
   }
 
   function handleTypeOfHouse(nameValue, inputValue) {
+    setActiveBtn(true);
     dispatch({
       type: "toggle/typeOfHome",
       payload: {
@@ -25,6 +92,7 @@ export default function Filters() {
   }
 
   function handleMoreFilters(nameValue, inputValue) {
+    setActiveBtn(true);
     dispatch({
       type: "toggle/moreFilters",
       payload: {
@@ -36,6 +104,9 @@ export default function Filters() {
   }
 
   function handleMoreBedrooms(e) {
+    setActiveBtn(true);
+    e.preventDefault();
+
     dispatch({
       type: "toggle/bedrooms",
       payload: { bedrooms: e.target.value },
@@ -43,6 +114,9 @@ export default function Filters() {
   }
 
   function handleCondition(e) {
+    e.preventDefault();
+    setActiveBtn(true);
+
     dispatch({
       type: "toggle/condition",
       payload: { condition: e.target.value },
@@ -50,6 +124,9 @@ export default function Filters() {
   }
 
   function handleEquipment(e) {
+    e.preventDefault();
+    setActiveBtn(true);
+
     dispatch({
       type: "toggle/equipment",
       payload: { equipment: e.target.value },
@@ -57,6 +134,9 @@ export default function Filters() {
   }
 
   function handlePrice(e) {
+    e.preventDefault();
+    setActiveBtn(true);
+
     const slider = document.getElementById("priceRange");
     const output = document.getElementById("sliderValue");
     output.innerHTML = slider.value;
@@ -71,6 +151,9 @@ export default function Filters() {
   }
 
   function handlePublicationDate(e) {
+    e.preventDefault();
+    setActiveBtn(true);
+
     dispatch({
       type: "toggle/publicationDate",
       payload: { publicationDate: e.target.value },
@@ -377,11 +460,32 @@ export default function Filters() {
             </select>
           </div>
           <div className="col-md-12 mt-3">
-            <button className="btn btn-outline-dark btn-lg">
-              Go to your ideal home
-            </button>
+            {activeBtn ? (
+              <button
+                onClick={filterProperties}
+                className="btn text-white btn-outline-light btn-lg bg-dark">
+                Go to your ideal home
+              </button>
+            ) : (
+              <button
+                onClick={filterProperties}
+                className="btn btn-outline-dark btn-lg">
+                Go to your ideal home
+              </button>
+            )}
           </div>
         </div>
+      </section>
+      <section>
+        {!isClicked ? (
+          <>
+            <p></p>
+          </>
+        ) : (
+          <>
+            <HomeListing allProperties={cleanedProperties} />
+          </>
+        )}
       </section>
     </div>
   );

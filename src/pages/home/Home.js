@@ -12,10 +12,9 @@ export default function Home() {
     dispatch(GetApi());
   },[dispatch]);
 
-
   return (
     <div>
-      <HomeListing allProperties={allProperties}/>
+      <HomeListing allProperties={allProperties[0]}/>
     </div>
   );
 }

@@ -27,7 +27,6 @@ export const FilterReducer = (state = initialState, action) => {
       const searchBarTextFromPastState = state;
       const searchBarTextFromNewState = action.payload;
       Object.assign(searchBarTextFromPastState, searchBarTextFromNewState);
-      // console.log(searchBarTextFromPastState, searchBarTextFromNewState);
       return { ...state };
     case "toggle/typeOfHome":
       const typeOfHomeFromPastState = state.typeOfHome;

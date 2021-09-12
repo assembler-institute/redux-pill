@@ -9,17 +9,15 @@ export default function HomeListing({ allProperties = [] }) {
   useEffect(() => {
     if (undefined !== allProperties && allProperties.length) {
       setIsLoading(false);
-      setProperties(allProperties[0]);
+      setProperties(allProperties);
     }
-    console.log(allProperties[0]);
+    // console.log(allProperties);
   }, [allProperties]);
 
   return (
     <div className="container-fluid">
       {isLoading ? (
-        <>
-          <p>Is loading</p>
-        </>
+        <></>
       ) : (
         <div className="row mt-5 px-5">
           {properties.map((property) => (
