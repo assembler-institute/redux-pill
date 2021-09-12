@@ -14,10 +14,10 @@ const initialState = {
     lift: false,
   },
   bedrooms: "1",
-  condition: "new",
+  condition: "new home",
   equipment: "indiferent",
-  price: 100,
-  publicationDate: Date.now(),
+  price: "100",
+  publicationDate: "today",
 };
 
 export const FilterReducer = (state = initialState, action) => {
@@ -38,13 +38,26 @@ export const FilterReducer = (state = initialState, action) => {
       Object.assign(moreBedroomsPastState, moreBedroomsFromNewState);
       return { ...state };
     case "toggle/condition":
-      return state;
+      const conditionPastState = state;
+      const conditionFromNewState = action.payload;
+      Object.assign(conditionPastState, conditionFromNewState);
+      return { ...state };
     case "toggle/equipment":
-      return state;
+      const equipmentPastState = state;
+      const equipmentFromNewState = action.payload;
+      Object.assign(equipmentPastState, equipmentFromNewState);
+      return { ...state };
     case "toggle/price":
-      return state;
+      const pricePastState = state;
+      const priceFromNewState = action.payload;
+      Object.assign(pricePastState, priceFromNewState);
+      // console.log(pricePastState, priceFromNewState);
+      return { ...state };
     case "toggle/publicationDate":
-      return state;
+      const publicationDatePastState = state;
+      const publicationDateFromNewState = action.payload;
+      Object.assign(publicationDatePastState, publicationDateFromNewState);
+      return { ...state };
     default:
       return state;
   }

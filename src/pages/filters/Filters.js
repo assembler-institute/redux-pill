@@ -6,15 +6,6 @@ import SearchIcon from "@material-ui/icons/Search";
 export default function Filters() {
   const dispatch = useDispatch();
 
-  function handleOutputRange() {
-    const slider = document.getElementById("customRange2");
-    var output = document.getElementById("rangeValue");
-    output.innerHTML = slider.value;
-    slider.oninput = function () {
-      output.innerHTML = this.value;
-    };
-  }
-
   function handleTypeOfHouse(nameValue, inputValue) {
     dispatch({
       type: "toggle/typeOfHome",
@@ -41,6 +32,41 @@ export default function Filters() {
     dispatch({
       type: "toggle/bedrooms",
       payload: { bedrooms: e.target.value },
+    });
+  }
+
+  function handleCondition(e) {
+    dispatch({
+      type: "toggle/condition",
+      payload: { condition: e.target.value },
+    });
+  }
+
+  function handleEquipment(e) {
+    dispatch({
+      type: "toggle/equipment",
+      payload: { equipment: e.target.value },
+    });
+  }
+
+  function handlePrice(e) {
+    const slider = document.getElementById("priceRange");
+    const output = document.getElementById("sliderValue");
+    output.innerHTML = slider.value;
+    slider.oninput = function () {
+      output.innerHTML = this.value;
+    };
+
+    dispatch({
+      type: "toggle/price",
+      payload: { price: slider.value },
+    });
+  }
+
+  function handlePublicationDate(e) {
+    dispatch({
+      type: "toggle/publicationDate",
+      payload: { publicationDate: e.target.value },
     });
   }
 
@@ -251,22 +277,28 @@ export default function Filters() {
               <div className="form-check">
                 <input
                   className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckChecked"
+                  type="radio"
+                  value="new home"
+                  name="conditionRadio"
+                  id="newHomeRadio"
+                  onClick={handleCondition}
                 />
-                <label className="form-check-label" htmlFor="flexCheckChecked">
+                <label className="form-check-label" htmlFor="newHomeRadio">
                   New homes
                 </label>
               </div>
               <div className="form-check house">
                 <input
                   className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckChecked"
+                  type="radio"
+                  value="good condition"
+                  name="conditionRadio"
+                  id="goodConditionRadio"
+                  onClick={handleCondition}
                 />
-                <label className="form-check-label" htmlFor="flexCheckChecked">
+                <label
+                  className="form-check-label"
+                  htmlFor="goodConditionRadio">
                   Good condition
                 </label>
               </div>
@@ -275,11 +307,15 @@ export default function Filters() {
               <div className="form-check">
                 <input
                   className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckChecked"
+                  type="radio"
+                  value="needs renovation"
+                  name="conditionRadio"
+                  id="needsRenovationRadio"
+                  onClick={handleCondition}
                 />
-                <label className="form-check-label" htmlFor="flexCheckChecked">
+                <label
+                  className="form-check-label"
+                  htmlFor="needsRenovationRadio">
                   Needs renovation
                 </label>
               </div>
@@ -290,38 +326,44 @@ export default function Filters() {
           <hr className="mt-3" />
           <div className="col-md-4 mt-1">
             <p className="filtersTitle">Equipment</p>
-            <select className="form-select" aria-label="Default select example">
-              <option defaultValue>Indiferent</option>
-              <option defaultValue="1">Full equipment</option>
-              <option defaultValue="2">Kitchen</option>
-              <option defaultValue="3">Forniture</option>
+            <select
+              className="form-select"
+              aria-label="select"
+              onChange={handleEquipment}>
+              <option defaultValue="Indiferent">Indiferent</option>
+              <option value="Full equipment">Full equipment</option>
+              <option value="Kitchen">Kitchen</option>
+              <option value="Forniture">Forniture</option>
             </select>
           </div>
           <div className="col-md-4 mt-1">
             <p className="filtersTitle">Price range</p>
-            <label htmlFor="customRange2" className="form-label">
+            <label htmlFor="priceRange" className="form-label">
               Choose your price
             </label>
             <input
-              onChange={handleOutputRange}
+              onChange={handlePrice}
               type="range"
               className="form-range"
               defaultValue="100"
               min="100"
               max="10000"
-              id="customRange2"
+              id="priceRange"
             />
             <p>
-              <span id="rangeValue"></span>
+              <span id="sliderValue">100</span>
             </p>
           </div>
           <div className="col-md-4 mt-1">
             <p className="filtersTitle">Publication date</p>
-            <select className="form-select" aria-label="Default select example">
-              <option defaultValue>Today</option>
-              <option value="1">Last 24h</option>
-              <option value="2">Last 48h</option>
-              <option value="3">Last week</option>
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              onChange={handlePublicationDate}>
+              <option defaultValue="today">Today</option>
+              <option value="24h">Last 24h</option>
+              <option value="48h">Last 48h</option>
+              <option value="last week">Last week</option>
             </select>
           </div>
           <div className="col-md-12 mt-3">
