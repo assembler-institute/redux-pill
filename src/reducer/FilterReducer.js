@@ -1,4 +1,5 @@
 const initialState = {
+  searchBar: "",
   typeOfHome: {
     flatCheckbox: false,
     houseCheckbox: false,
@@ -22,6 +23,12 @@ const initialState = {
 
 export const FilterReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "toggle/searchBar":
+      const searchBarTextFromPastState = state;
+      const searchBarTextFromNewState = action.payload;
+      Object.assign(searchBarTextFromPastState, searchBarTextFromNewState);
+      // console.log(searchBarTextFromPastState, searchBarTextFromNewState);
+      return { ...state };
     case "toggle/typeOfHome":
       const typeOfHomeFromPastState = state.typeOfHome;
       const typeOfHomeFromNewState = action.payload.typeOfHome;

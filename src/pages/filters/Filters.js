@@ -6,6 +6,13 @@ import SearchIcon from "@material-ui/icons/Search";
 export default function Filters() {
   const dispatch = useDispatch();
 
+  function handleSearchBar(e) {
+    dispatch({
+      type: "toggle/searchBar",
+      payload: { searchBar: e.target.value },
+    });
+  }
+
   function handleTypeOfHouse(nameValue, inputValue) {
     dispatch({
       type: "toggle/typeOfHome",
@@ -78,8 +85,11 @@ export default function Filters() {
             <input
               className="searchBar w-100"
               type="text"
+              name="searchBar"
+              defaultValue=""
               placeholder="Type your goal city"
               autoFocus
+              onChange={handleSearchBar}
             />
             <SearchIcon className="searchIcon" />
           </div>
