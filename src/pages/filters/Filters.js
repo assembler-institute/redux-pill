@@ -37,12 +37,12 @@ export default function Filters() {
     });
   }
 
-  // function handleMoreBedrooms(e) {
-  //   dispatch({
-  //     type: "toggle/bedrooms",
-  //     payload: { bedrooms: e.target.value },
-  //   });
-  // }
+  function handleMoreBedrooms(e) {
+    dispatch({
+      type: "toggle/bedrooms",
+      payload: { bedrooms: e.target.value },
+    });
+  }
 
   return (
     <div className="container-fluid px-5">
@@ -220,16 +220,28 @@ export default function Filters() {
           </div>
           <div className="col-md-3 mt-4">
             <p className="filtersTitle">Bedrooms</p>
-            <button className="btnBed btn btn-dark btn-sm" value="1">
+            <button
+              className="btnBed btn btn-dark btn-sm"
+              value="1"
+              onClick={handleMoreBedrooms}>
               1
             </button>
-            <button className="btnBed btn btn-dark btn-sm" value="2">
+            <button
+              className="btnBed btn btn-dark btn-sm"
+              value="2"
+              onClick={handleMoreBedrooms}>
               2
             </button>
-            <button className="btnBed btn btn-dark btn-sm" value="3">
+            <button
+              className="btnBed btn btn-dark btn-sm"
+              value="3"
+              onClick={handleMoreBedrooms}>
               3
             </button>
-            <button className="btnBed btn btn-dark btn-sm" value="4">
+            <button
+              className="btnBed btn btn-dark btn-sm"
+              value="4"
+              onClick={handleMoreBedrooms}>
               4 or +
             </button>
           </div>

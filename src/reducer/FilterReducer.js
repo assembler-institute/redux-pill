@@ -13,7 +13,7 @@ const initialState = {
     terrace: false,
     lift: false,
   },
-  bedrooms: 1,
+  bedrooms: "1",
   condition: "new",
   equipment: "indiferent",
   price: 100,
@@ -26,14 +26,17 @@ export const FilterReducer = (state = initialState, action) => {
       const typeOfHomeFromPastState = state.typeOfHome;
       const typeOfHomeFromNewState = action.payload.typeOfHome;
       Object.assign(typeOfHomeFromPastState, typeOfHomeFromNewState);
-      return {...state};
+      return { ...state };
     case "toggle/moreFilters":
       const moreFiltersFromPastState = state.moreFilters;
       const moreFiltersFromNewState = action.payload.moreFilters;
       Object.assign(moreFiltersFromPastState, moreFiltersFromNewState);
-      return {...state};
+      return { ...state };
     case "toggle/bedrooms":
-      return state;
+      const moreBedroomsPastState = state;
+      const moreBedroomsFromNewState = action.payload;
+      Object.assign(moreBedroomsPastState, moreBedroomsFromNewState);
+      return { ...state };
     case "toggle/condition":
       return state;
     case "toggle/equipment":
