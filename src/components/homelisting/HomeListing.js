@@ -28,6 +28,8 @@ export default function HomeListing({ allProperties = [] }) {
                 </div>
                 <div className="card-body">
                   <h5 className="card-title">{property.street}</h5>
+                  <hr />
+                  <h6 className="card-title">{property.city}</h6>
                   <p className="card-text">{property.description}</p>
                   <Link to="" className="btn btn-outline-dark">
                     Rent now!

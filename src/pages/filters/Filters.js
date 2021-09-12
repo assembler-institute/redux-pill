@@ -10,6 +10,7 @@ export default function Filters() {
   const currentFilterReducer = useSelector((state) => state.FilterReducer);
   const [isClicked, setIsClicked] = useState(false);
   const [activeBtn, setActiveBtn] = useState(true);
+  const [inputClicked, setInputClicked] = useState(false);
   const [cleanedProperties, setCleanedProperties] = useState([]);
   const dispatch = useDispatch();
 
@@ -22,48 +23,55 @@ export default function Filters() {
     setActiveBtn(false);
     const filteredProperties = [];
     allProperties[0].map((property) => {
-      if (currentFilterReducer.searchBar === property.city) {
-        if (
-          currentFilterReducer.typeOfHome.flatCheckbox &&
-          property.type === "flat/apartment"
-        ) {
-          filteredProperties.push(property);
-        }
-        if (
-          currentFilterReducer.typeOfHome.houseCheckbox &&
-          property.type === "house"
-        ) {
-          filteredProperties.push(property);
-        }
-        if (
-          currentFilterReducer.typeOfHome.duplexCheckbox &&
-          property.type === "duplex"
-        ) {
-          filteredProperties.push(property);
-        }
-        if (
-          currentFilterReducer.typeOfHome.penthouseCheckbox &&
-          property.type === "penthouse"
-        ) {
-          filteredProperties.push(property);
-        }
-        // filteredProperties.push(property);
+      if (currentFilterReducer.searchBar === property.city && !inputClicked) {
+        filteredProperties.push(property);
+      } else if (
+        currentFilterReducer.searchBar === property.city &&
+        inputClicked
+      ) {
+        comparisonFilters(property, filteredProperties);
+      } else if (currentFilterReducer.searchBar === "") {
+        comparisonFilters(property, filteredProperties);
       }
-
-      // return setFilteredProperties(filteredProperties);
+      return setInputClicked(false);
     });
 
     const notRepeatedproperties = filteredProperties.filter(
       deleteRepeatedProperties
     );
+
     setCleanedProperties(notRepeatedproperties);
-    // console.log(filteredProperties);
-    // console.log(notRepeatedproperties);
 
     if (filteredProperties.length === 0) {
       setIsClicked(false);
     }
-    // console.log(filteredproperties);
+  }
+
+  function comparisonFilters(property, filteredProperties) {
+    if (
+      currentFilterReducer.typeOfHome.flatCheckbox &&
+      property.type === "flat/apartment"
+    ) {
+      filteredProperties.push(property);
+    }
+    if (
+      currentFilterReducer.typeOfHome.houseCheckbox &&
+      property.type === "house"
+    ) {
+      filteredProperties.push(property);
+    }
+    if (
+      currentFilterReducer.typeOfHome.duplexCheckbox &&
+      property.type === "duplex"
+    ) {
+      filteredProperties.push(property);
+    }
+    if (
+      currentFilterReducer.typeOfHome.penthouseCheckbox &&
+      property.type === "penthouse"
+    ) {
+      filteredProperties.push(property);
+    }
   }
 
   function deleteRepeatedProperties(value, index, self) {
@@ -81,6 +89,7 @@ export default function Filters() {
 
   function handleTypeOfHouse(nameValue, inputValue) {
     setActiveBtn(true);
+    setInputClicked(true);
     dispatch({
       type: "toggle/typeOfHome",
       payload: {
@@ -93,6 +102,8 @@ export default function Filters() {
 
   function handleMoreFilters(nameValue, inputValue) {
     setActiveBtn(true);
+    setInputClicked(true);
+
     dispatch({
       type: "toggle/moreFilters",
       payload: {
@@ -105,6 +116,8 @@ export default function Filters() {
 
   function handleMoreBedrooms(e) {
     setActiveBtn(true);
+    setInputClicked(true);
+
     e.preventDefault();
 
     dispatch({
@@ -116,6 +129,7 @@ export default function Filters() {
   function handleCondition(e) {
     e.preventDefault();
     setActiveBtn(true);
+    setInputClicked(true);
 
     dispatch({
       type: "toggle/condition",
@@ -126,6 +140,7 @@ export default function Filters() {
   function handleEquipment(e) {
     e.preventDefault();
     setActiveBtn(true);
+    setInputClicked(true);
 
     dispatch({
       type: "toggle/equipment",
@@ -136,6 +151,7 @@ export default function Filters() {
   function handlePrice(e) {
     e.preventDefault();
     setActiveBtn(true);
+    setInputClicked(true);
 
     const slider = document.getElementById("priceRange");
     const output = document.getElementById("sliderValue");
@@ -153,6 +169,7 @@ export default function Filters() {
   function handlePublicationDate(e) {
     e.preventDefault();
     setActiveBtn(true);
+    setInputClicked(true);
 
     dispatch({
       type: "toggle/publicationDate",
