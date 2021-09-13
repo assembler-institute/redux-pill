@@ -11,6 +11,7 @@ export default function Filters() {
   const [isClicked, setIsClicked] = useState(false);
   const [activeBtn, setActiveBtn] = useState(true);
   const [inputClicked, setInputClicked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const [cleanedProperties, setCleanedProperties] = useState([]);
   const dispatch = useDispatch();
 
@@ -18,22 +19,63 @@ export default function Filters() {
     dispatch(GetApi());
   }, [dispatch]);
 
+  useEffect(() => {
+    getFalseInputs(
+      currentFilterReducer.moreFilters,
+      currentFilterReducer.typeOfHome,
+      currentFilterReducer
+    );
+  }, [currentFilterReducer]);
+
   function filterProperties() {
     setIsClicked(true);
     setActiveBtn(false);
+
     const filteredProperties = [];
     allProperties[0].map((property) => {
-      if (currentFilterReducer.searchBar === property.city && !inputClicked) {
+      if (
+        (currentFilterReducer.searchBar === property.city ||
+          currentFilterReducer.searchBar === property.street) &&
+        !inputClicked
+      ) {
         filteredProperties.push(property);
       } else if (
-        currentFilterReducer.searchBar === property.city &&
+        (currentFilterReducer.searchBar === property.city ||
+          currentFilterReducer.searchBar === property.street) &&
         inputClicked
       ) {
         comparisonFilters(property, filteredProperties);
-      } else if (currentFilterReducer.searchBar === "") {
+        dispatch({
+          type: "toggle/equipment",
+          payload: { equipment: "" },
+        });
+        dispatch({
+          type: "toggle/condition",
+          payload: { condition: "" },
+        });
+        dispatch({
+          type: "toggle/price",
+          payload: { price: "" },
+        });
+      } else if (currentFilterReducer.searchBar === "" && !inputClicked) {
+        filteredProperties.push(property);
+      } else if (currentFilterReducer.searchBar === "" && inputClicked) {
         comparisonFilters(property, filteredProperties);
+
+        dispatch({
+          type: "toggle/equipment",
+          payload: { equipment: "" },
+        });
+        dispatch({
+          type: "toggle/condition",
+          payload: { condition: "" },
+        });
+        dispatch({
+          type: "toggle/price",
+          payload: { price: "" },
+        });
       }
-      return setInputClicked(false);
+      return true;
     });
 
     const notRepeatedproperties = filteredProperties.filter(
@@ -44,6 +86,26 @@ export default function Filters() {
 
     if (filteredProperties.length === 0) {
       setIsClicked(false);
+    }
+  }
+
+  function getFalseInputs(moreFilters, typeOfHome, currentFilterReducer) {
+    if (
+      !moreFilters.airConditioning &&
+      !moreFilters.petsAllowed &&
+      !moreFilters.garden &&
+      !moreFilters.lift &&
+      !moreFilters.swimmingPool &&
+      !moreFilters.terrace &&
+      !typeOfHome.flatCheckbox &&
+      !typeOfHome.houseCheckbox &&
+      !typeOfHome.duplexCheckbox &&
+      !typeOfHome.penthouseCheckbox &&
+      currentFilterReducer.condition === "" &&
+      currentFilterReducer.equipment === "" &&
+      currentFilterReducer.price === ""
+    ) {
+      setInputClicked(false);
     }
   }
 
@@ -70,6 +132,47 @@ export default function Filters() {
       currentFilterReducer.typeOfHome.penthouseCheckbox &&
       property.type === "penthouse"
     ) {
+      filteredProperties.push(property);
+    }
+    if (currentFilterReducer.moreFilters.petsAllowed && property.pet) {
+      filteredProperties.push(property);
+    }
+    if (currentFilterReducer.moreFilters.garden && property.garden) {
+      console.log(property);
+      filteredProperties.push(property);
+    }
+    if (
+      currentFilterReducer.moreFilters.swimmingPool &&
+      property.swimming_pool
+    ) {
+      filteredProperties.push(property);
+    }
+    if (
+      currentFilterReducer.moreFilters.airConditioning &&
+      property.air_conditioning
+    ) {
+      filteredProperties.push(property);
+    }
+    if (currentFilterReducer.moreFilters.terrace && property.terrace) {
+      filteredProperties.push(property);
+    }
+    if (currentFilterReducer.moreFilters.lift && property.lift) {
+      filteredProperties.push(property);
+    }
+    if (currentFilterReducer.bedrooms === property.room) {
+      filteredProperties.push(property);
+    }
+    if (currentFilterReducer.condition === property.condition) {
+      console.log(currentFilterReducer.condition, property.condition);
+      filteredProperties.push(property);
+    }
+    if (currentFilterReducer.equipment === property.equipment) {
+      filteredProperties.push(property);
+    }
+    if (currentFilterReducer.equipment === property.equipment) {
+      filteredProperties.push(property);
+    }
+    if (parseInt(currentFilterReducer.price) > parseInt(property.price)) {
       filteredProperties.push(property);
     }
   }
@@ -151,7 +254,6 @@ export default function Filters() {
   function handlePrice(e) {
     e.preventDefault();
     setActiveBtn(true);
-    setInputClicked(true);
 
     const slider = document.getElementById("priceRange");
     const output = document.getElementById("sliderValue");
@@ -159,6 +261,9 @@ export default function Filters() {
     slider.oninput = function () {
       output.innerHTML = this.value;
     };
+    if (slider.value > 100) {
+      setInputClicked(true);
+    }
 
     dispatch({
       type: "toggle/price",
@@ -440,16 +545,16 @@ export default function Filters() {
               className="form-select"
               aria-label="select"
               onChange={handleEquipment}>
-              <option defaultValue="Indiferent">Indiferent</option>
-              <option value="Full equipment">Full equipment</option>
-              <option value="Kitchen">Kitchen</option>
-              <option value="Forniture">Forniture</option>
+              <option defaultValue="indiferent">Indiferent</option>
+              <option value="full equipment">Full equipment</option>
+              <option value="kitchen">Kitchen</option>
+              <option value="forniture">Forniture</option>
             </select>
           </div>
           <div className="col-md-4 mt-1">
             <p className="filtersTitle">Price range</p>
             <label htmlFor="priceRange" className="form-label">
-              Choose your price
+              Choose your max price
             </label>
             <input
               onChange={handlePrice}

@@ -14,11 +14,11 @@ const initialState = {
     terrace: false,
     lift: false,
   },
-  bedrooms: "1",
-  condition: "new home",
-  equipment: "indiferent",
-  price: "100",
-  publicationDate: "today",
+  bedrooms: "",
+  condition: "",
+  equipment: "",
+  price: "",
+  publicationDate: "",
 };
 
 export const FilterReducer = (state = initialState, action) => {
