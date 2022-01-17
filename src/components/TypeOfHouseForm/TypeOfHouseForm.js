@@ -1,92 +1,82 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
+import { useDispatch, useSelector } from "react-redux";
+
+import { compileData } from "../../redux/search/actions";
 
 export default function TypeOfHouseForm() {
-  const [state, setState] = React.useState({
-    gilad: true,
-    jason: false,
-    antoine: false,
+  const dispatch = useDispatch();
+  const [type, setType] = useState({
+    flat: true,
+    house: true,
+    duplex: true,
+    penthouse: true,
   });
+  const { typeOfHouse } = useSelector((state) => state.search);
 
   const handleChange = (event) => {
-    setState({
-      ...state,
+    setType({
+      ...type,
       [event.target.name]: event.target.checked,
     });
   };
 
-  const { gilad, jason, antoine } = state;
-  const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
-
+  useEffect(() => {
+    dispatch(compileData(type));
+  }, [type]);
   return (
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
-        <FormLabel component="legend">Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={
-              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+              <Checkbox
+                checked={typeOfHouse.flat}
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="flat"
+              />
             }
-            label="Gilad Gray"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox checked={jason} onChange={handleChange} name="jason" />
-            }
-            label="Jason Killian"
+            label="Flat/Apartment"
           />
           <FormControlLabel
             control={
               <Checkbox
-                checked={antoine}
-                onChange={handleChange}
-                name="antoine"
+                checked={typeOfHouse.house}
+                onChange={(e) => handleChange(e)}
+                name="house"
               />
             }
-            label="Antoine Llorca"
-          />
-        </FormGroup>
-        <FormHelperText>Be careful</FormHelperText>
-      </FormControl>
-      <FormControl
-        required
-        error={error}
-        component="fieldset"
-        sx={{ m: 3 }}
-        variant="standard"
-      >
-        <FormLabel component="legend">Pick two</FormLabel>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
-            }
-            label="Gilad Gray"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox checked={jason} onChange={handleChange} name="jason" />
-            }
-            label="Jason Killian"
+            label="House"
           />
           <FormControlLabel
             control={
               <Checkbox
-                checked={antoine}
-                onChange={handleChange}
-                name="antoine"
+                checked={typeOfHouse.duplex}
+                onChange={(e) => handleChange(e)}
+                name="duplex"
               />
             }
-            label="Antoine Llorca"
+            label="Duplex"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={typeOfHouse.penthouse}
+                onChange={(e) => handleChange(e)}
+                name="penthouse"
+              />
+            }
+            label="Penthouse"
           />
         </FormGroup>
-        <FormHelperText>You can display an error</FormHelperText>
+        <FormHelperText>Select as many as you want</FormHelperText>
       </FormControl>
     </Box>
   );

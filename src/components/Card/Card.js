@@ -6,35 +6,33 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
-
 const card = (
   <React.Fragment>
     <CardContent>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Word of the Day
-      </Typography>
-      <Typography variant="h5" component="div">
-        be{bull}nev{bull}o{bull}lent
+      <Typography variant="h3" component="div" sx={{ color: "#4caf50" }}>
+        Real Estate for you
       </Typography>
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        adjective
+        Idealist takes care of what you most depend on
       </Typography>
       <Typography variant="body2">
-        well meaning and kindly.
+        Search for the house you always wanted to have with our developed search
+        engine.
         <br />
-        {'"a benevolent smile"'}
+        {
+          '"You can filter among many different values and find the house that fits you most"'
+        }
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="small">Learn More</Button>
+      <Button
+        onClick={() => {
+          window.location = "/dashboard";
+        }}
+        size="small"
+      >
+        Learn More
+      </Button>
     </CardActions>
   </React.Fragment>
 );
@@ -42,7 +40,9 @@ const card = (
 export default function OutlinedCard() {
   return (
     <Box sx={{ minWidth: 275 }}>
-      <Card variant="outlined">{card}</Card>
+      <Card variant="outlined" sx={{ backgroundColor: "#d1ff33" }}>
+        {card}
+      </Card>
     </Box>
   );
 }

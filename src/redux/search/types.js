@@ -1,3 +1,6 @@
 export const actionTypes = {
   FILTER: "FILTER",
+  MAIN_SEARCH: "MAIN_SEARCH",
+  COMPILE_DATA: "COMPILE_DATA",
+  ERASE_FORM_DATA: "ERASE_FORM_DATA",
 };

@@ -1,16 +1,15 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 
-import PrimarySearchAppBar from "../../components/Navbar/Navbar";
 import OutlinedCard from "../../components/Card/Card";
 import CustomizedInputBase from "../../components/MainSearchInput/MainSearchInput";
+import withLayout from "../../hoc/withLayout/withLayout";
 
 import "./Home.scss";
 
-export default function Home() {
+function Home() {
   return (
     <>
-      <PrimarySearchAppBar />
       <div className="flexDiv">
         <OutlinedCard />
         <CustomizedInputBase />
@@ -22,3 +21,4 @@ export default function Home() {
     </>
   );
 }
+export default withLayout(Home);
