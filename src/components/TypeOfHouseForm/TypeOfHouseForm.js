@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
@@ -11,24 +11,8 @@ import { setTypeHouse } from "../../redux/search/actions";
 
 export default function TypeOfHouseForm() {
   const dispatch = useDispatch();
-  const [type, setType] = useState({
-    flat: true,
-    house: true,
-    duplex: true,
-    penthouse: true,
-  });
   const { typeOfHouse } = useSelector((state) => state.search);
 
-  const handleChange = (event) => {
-    setType({
-      ...type,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-  useEffect(() => {
-    dispatch(setTypeHouse(type));
-  }, [type]);
   return (
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
@@ -38,7 +22,12 @@ export default function TypeOfHouseForm() {
               <Checkbox
                 checked={typeOfHouse.flat}
                 onChange={(e) => {
-                  handleChange(e);
+                  dispatch(
+                    setTypeHouse({
+                      ...typeOfHouse,
+                      [e.target.name]: e.target.checked,
+                    })
+                  );
                 }}
                 name="flat"
               />
@@ -49,7 +38,14 @@ export default function TypeOfHouseForm() {
             control={
               <Checkbox
                 checked={typeOfHouse.house}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) =>
+                  dispatch(
+                    setTypeHouse({
+                      ...typeOfHouse,
+                      [e.target.name]: e.target.checked,
+                    })
+                  )
+                }
                 name="house"
               />
             }
@@ -59,7 +55,14 @@ export default function TypeOfHouseForm() {
             control={
               <Checkbox
                 checked={typeOfHouse.duplex}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) =>
+                  dispatch(
+                    setTypeHouse({
+                      ...typeOfHouse,
+                      [e.target.name]: e.target.checked,
+                    })
+                  )
+                }
                 name="duplex"
               />
             }
@@ -69,7 +72,14 @@ export default function TypeOfHouseForm() {
             control={
               <Checkbox
                 checked={typeOfHouse.penthouse}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) =>
+                  dispatch(
+                    setTypeHouse({
+                      ...typeOfHouse,
+                      [e.target.name]: e.target.checked,
+                    })
+                  )
+                }
                 name="penthouse"
               />
             }

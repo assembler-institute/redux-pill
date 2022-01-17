@@ -9,16 +9,8 @@ import { setEquipment } from "../../redux/search/actions";
 
 export default function EquipmentSelect() {
   const dispatch = useDispatch();
-  const [furniture, setFurniture] = React.useState("indifferent");
   const { equipment } = useSelector((state) => state.search);
 
-  const handleChange = (event) => {
-    setFurniture(event.target.value);
-  };
-
-  React.useEffect(() => {
-    dispatch(setEquipment(furniture));
-  }, [furniture]);
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 200 }}>
@@ -29,7 +21,7 @@ export default function EquipmentSelect() {
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
           value={equipment}
-          onChange={handleChange}
+          onChange={(event) => dispatch(setEquipment(event.target.value))}
           autoWidth
           label="furniture"
         >

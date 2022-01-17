@@ -4,8 +4,8 @@ export const filter = () => ({
   type: actionTypes.FILTER,
 });
 
-export const mainSearch = (value) => ({
-  type: actionTypes.MAIN_SEARCH,
+export const searchFilter = (value) => ({
+  type: actionTypes.SEARCH_FILTER,
   payload: value,
 });
 

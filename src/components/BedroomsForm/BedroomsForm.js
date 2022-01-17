@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
@@ -11,25 +11,8 @@ import { setBedrooms } from "../../redux/search/actions";
 
 export default function BedroomsForm() {
   const dispatch = useDispatch();
-  const [number, setNumber] = useState({
-    zero: true,
-    one: true,
-    two: true,
-    three: true,
-    more: true,
-  });
   const { bedrooms } = useSelector((state) => state.search);
 
-  const handleChange = (event) => {
-    setNumber({
-      ...number,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-  useEffect(() => {
-    dispatch(setBedrooms(number));
-  }, [number]);
   return (
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
@@ -38,9 +21,14 @@ export default function BedroomsForm() {
             control={
               <Checkbox
                 checked={bedrooms.zero}
-                onChange={(e) => {
-                  handleChange(e);
-                }}
+                onChange={(event) =>
+                  dispatch(
+                    setBedrooms({
+                      ...bedrooms,
+                      [event.target.name]: event.target.checked,
+                    })
+                  )
+                }
                 name="zero"
               />
             }
@@ -50,7 +38,14 @@ export default function BedroomsForm() {
             control={
               <Checkbox
                 checked={bedrooms.one}
-                onChange={(e) => handleChange(e)}
+                onChange={(event) =>
+                  dispatch(
+                    setBedrooms({
+                      ...bedrooms,
+                      [event.target.name]: event.target.checked,
+                    })
+                  )
+                }
                 name="one"
               />
             }
@@ -60,7 +55,14 @@ export default function BedroomsForm() {
             control={
               <Checkbox
                 checked={bedrooms.two}
-                onChange={(e) => handleChange(e)}
+                onChange={(event) =>
+                  dispatch(
+                    setBedrooms({
+                      ...bedrooms,
+                      [event.target.name]: event.target.checked,
+                    })
+                  )
+                }
                 name="two"
               />
             }
@@ -70,7 +72,14 @@ export default function BedroomsForm() {
             control={
               <Checkbox
                 checked={bedrooms.three}
-                onChange={(e) => handleChange(e)}
+                onChange={(event) =>
+                  dispatch(
+                    setBedrooms({
+                      ...bedrooms,
+                      [event.target.name]: event.target.checked,
+                    })
+                  )
+                }
                 name="three"
               />
             }
@@ -80,7 +89,14 @@ export default function BedroomsForm() {
             control={
               <Checkbox
                 checked={bedrooms.more}
-                onChange={(e) => handleChange(e)}
+                onChange={(event) =>
+                  dispatch(
+                    setBedrooms({
+                      ...bedrooms,
+                      [event.target.name]: event.target.checked,
+                    })
+                  )
+                }
                 name="more"
               />
             }

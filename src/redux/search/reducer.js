@@ -6,7 +6,7 @@ export default function searchReducer(state = initialState, action) {
       return {
         ...state,
       };
-    case actionTypes.MAIN_SEARCH:
+    case actionTypes.SEARCH_FILTER:
       return {
         ...state,
         searchedValue: action.payload,
@@ -14,7 +14,6 @@ export default function searchReducer(state = initialState, action) {
     case actionTypes.COMPILE_DATA:
       return {
         ...state,
-        typeOfHouse: action.payload,
       };
     case actionTypes.ERASE_FORM_DATA:
       return {

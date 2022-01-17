@@ -1,26 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import DirectionsIcon from "@mui/icons-material/Directions";
-import { Link } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-// import { mainSearch } from "../../redux/search/actions";
+import { searchFilter } from "../../redux/search/actions";
 
 export default function CustomizedInputBase() {
-  // const { searchedValue } = useSelector((state) => state.search);
+  const dispatch = useDispatch();
+  const { searchedValue } = useSelector((state) => state.search);
+  const [value, setValue] = useState("");
+  const navigate = useNavigate();
+
   return (
     <Paper
       component="form"
       sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}
       onSubmit={(e) => {
         e.preventDefault();
-        setTimeout(() => {
-          // console.log(searchedValue || "no value");
-        }, 1500);
+        dispatch(searchFilter(value));
+        navigate("/dashboard");
       }}
     >
       <InputBase
@@ -33,11 +36,12 @@ export default function CustomizedInputBase() {
           color: "#4caf50",
         }}
         placeholder="Search for country, city, street..."
+        defaultValue={searchedValue ? searchedValue : ""}
         inputProps={{ "aria-label": "search google maps" }}
         onChange={(e) => {
-          e.preventDefault();
           setTimeout(() => {
-            // mainSearch(e.target.value);
+            setValue(e.target.value);
+            dispatch(searchFilter(e.target.value));
           }, 1000);
         }}
       />

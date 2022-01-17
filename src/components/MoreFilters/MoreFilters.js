@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
@@ -11,26 +11,8 @@ import { setMoreFilters } from "../../redux/search/actions";
 
 export default function MoreFilters() {
   const dispatch = useDispatch();
-  const [filter, setFilters] = useState({
-    pets: false,
-    lift: false,
-    garden: false,
-    air: false,
-    swimmingPool: false,
-    terrace: false,
-  });
   const { moreFilters } = useSelector((state) => state.search);
 
-  const handleChange = (event) => {
-    setFilters({
-      ...filter,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-  useEffect(() => {
-    dispatch(setMoreFilters(filter));
-  }, [filter]);
   return (
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
@@ -39,8 +21,13 @@ export default function MoreFilters() {
             control={
               <Checkbox
                 checked={moreFilters.pets}
-                onChange={(e) => {
-                  handleChange(e);
+                onChange={(event) => {
+                  dispatch(
+                    setMoreFilters({
+                      ...moreFilters,
+                      [event.target.name]: event.target.checked,
+                    })
+                  );
                 }}
                 name="pets"
               />
@@ -51,7 +38,14 @@ export default function MoreFilters() {
             control={
               <Checkbox
                 checked={moreFilters.lift}
-                onChange={(e) => handleChange(e)}
+                onChange={(event) => {
+                  dispatch(
+                    setMoreFilters({
+                      ...moreFilters,
+                      [event.target.name]: event.target.checked,
+                    })
+                  );
+                }}
                 name="lift"
               />
             }
@@ -61,7 +55,14 @@ export default function MoreFilters() {
             control={
               <Checkbox
                 checked={moreFilters.garden}
-                onChange={(e) => handleChange(e)}
+                onChange={(event) => {
+                  dispatch(
+                    setMoreFilters({
+                      ...moreFilters,
+                      [event.target.name]: event.target.checked,
+                    })
+                  );
+                }}
                 name="garden"
               />
             }
@@ -71,7 +72,14 @@ export default function MoreFilters() {
             control={
               <Checkbox
                 checked={moreFilters.air}
-                onChange={(e) => handleChange(e)}
+                onChange={(event) => {
+                  dispatch(
+                    setMoreFilters({
+                      ...moreFilters,
+                      [event.target.name]: event.target.checked,
+                    })
+                  );
+                }}
                 name="air"
               />
             }
@@ -81,7 +89,14 @@ export default function MoreFilters() {
             control={
               <Checkbox
                 checked={moreFilters.swimmingPool}
-                onChange={(e) => handleChange(e)}
+                onChange={(event) => {
+                  dispatch(
+                    setMoreFilters({
+                      ...moreFilters,
+                      [event.target.name]: event.target.checked,
+                    })
+                  );
+                }}
                 name="swimmingPool"
               />
             }
@@ -91,7 +106,14 @@ export default function MoreFilters() {
             control={
               <Checkbox
                 checked={moreFilters.terrace}
-                onChange={(e) => handleChange(e)}
+                onChange={(event) => {
+                  dispatch(
+                    setMoreFilters({
+                      ...moreFilters,
+                      [event.target.name]: event.target.checked,
+                    })
+                  );
+                }}
                 name="terrace"
               />
             }

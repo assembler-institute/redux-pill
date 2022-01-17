@@ -10,15 +10,6 @@ import { setPublicationDate } from "../../redux/search/actions";
 export default function PublicationDateSelect() {
   const dispatch = useDispatch();
   const { publicationDate } = useSelector((state) => state.search);
-  const [date, setDate] = React.useState("last week");
-
-  const handleChange = (event) => {
-    setDate(event.target.value);
-  };
-
-  React.useEffect(() => {
-    dispatch(setPublicationDate(date));
-  }, [date]);
 
   return (
     <div>
@@ -28,7 +19,7 @@ export default function PublicationDateSelect() {
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
           value={publicationDate}
-          onChange={handleChange}
+          onChange={(event) => dispatch(setPublicationDate(event.target.value))}
           autoWidth
           label="publicationDate"
         >

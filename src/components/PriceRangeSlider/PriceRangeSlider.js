@@ -18,22 +18,13 @@ const marks = [
 
 export default function PriceRangeSlider() {
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState([100000, 300000]);
   const { priceRange } = useSelector((state) => state.search);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  React.useEffect(() => {
-    dispatch(setPriceRange(value));
-  }, [value]);
 
   return (
     <Box sx={{ width: 260, marginLeft: "1.1rem" }}>
       <Slider
         value={priceRange}
-        onChange={handleChange}
+        onChange={(event, newValue) => dispatch(setPriceRange(newValue))}
         valueLabelDisplay="auto"
         marks={marks}
         min={20000}

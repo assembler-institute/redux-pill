@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useDebugValue } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
@@ -11,23 +11,8 @@ import { setCondition } from "../../redux/search/actions";
 
 export default function ConditionForm() {
   const dispatch = useDispatch();
-  const [value, setValue] = useState({
-    new: true,
-    good: true,
-    renovation: true,
-  });
   const { condition } = useSelector((state) => state.search);
 
-  const handleChange = (event) => {
-    setValue({
-      ...value,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-  useEffect(() => {
-    dispatch(setCondition(value));
-  }, [value]);
   return (
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
@@ -36,8 +21,13 @@ export default function ConditionForm() {
             control={
               <Checkbox
                 checked={condition.new}
-                onChange={(e) => {
-                  handleChange(e);
+                onChange={(event) => {
+                  dispatch(
+                    setCondition({
+                      ...condition,
+                      [event.target.name]: event.target.checked,
+                    })
+                  );
                 }}
                 name="new"
               />
@@ -48,7 +38,14 @@ export default function ConditionForm() {
             control={
               <Checkbox
                 checked={condition.good}
-                onChange={(e) => handleChange(e)}
+                onChange={(event) => {
+                  dispatch(
+                    setCondition({
+                      ...condition,
+                      [event.target.name]: event.target.checked,
+                    })
+                  );
+                }}
                 name="good"
               />
             }
@@ -58,7 +55,14 @@ export default function ConditionForm() {
             control={
               <Checkbox
                 checked={condition.renovation}
-                onChange={(e) => handleChange(e)}
+                onChange={(event) => {
+                  dispatch(
+                    setCondition({
+                      ...condition,
+                      [event.target.name]: event.target.checked,
+                    })
+                  );
+                }}
                 name="renovation"
               />
             }
