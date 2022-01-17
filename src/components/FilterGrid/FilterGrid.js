@@ -6,9 +6,13 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 
 import TypeOfHouseForm from "../TypeOfHouseForm/TypeOfHouseForm";
+import BedroomsForm from "../BedroomsForm/BedroomsForm";
 import EquipmentSelect from "../EquipmentSelect/EquipmentSelect";
 import PriceRangeSlider from "../PriceRangeSlider/PriceRangeSlider";
 import PublicationDateSelect from "../PublicationDateSelect/PublicationDateSelect";
+import BathroomsForm from "../BathroomsForm/BathroomsForm";
+import ConditionForm from "../ConditionForm/ConditionForm";
+import MoreFilters from "../MoreFilters/MoreFilters";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -44,6 +48,7 @@ export default function FilterGrid() {
             <Typography variant="h6" gutterBottom component="div">
               Bedrooms
             </Typography>
+            <BedroomsForm />
           </Item>
         </Grid>
         <Grid item xs={3}>
@@ -51,6 +56,7 @@ export default function FilterGrid() {
             <Typography variant="h6" gutterBottom component="div">
               Bathrooms
             </Typography>
+            <BathroomsForm />
           </Item>
         </Grid>
         <Grid item xs={3}>
@@ -66,6 +72,7 @@ export default function FilterGrid() {
             <Typography variant="h6" gutterBottom component="div">
               Condition
             </Typography>
+            <ConditionForm />
           </Item>
         </Grid>
         <Grid item xs={3}>
@@ -89,6 +96,7 @@ export default function FilterGrid() {
             <Typography variant="h6" gutterBottom component="div">
               More Filters
             </Typography>
+            <MoreFilters />
           </Item>
         </Grid>
       </Grid>

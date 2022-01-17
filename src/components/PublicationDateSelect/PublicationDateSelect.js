@@ -3,13 +3,22 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setPublicationDate } from "../../redux/search/actions";
 
 export default function PublicationDateSelect() {
-  const [age, setAge] = React.useState("");
+  const dispatch = useDispatch();
+  const { publicationDate } = useSelector((state) => state.search);
+  const [date, setDate] = React.useState("last week");
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setDate(event.target.value);
   };
+
+  React.useEffect(() => {
+    dispatch(setPublicationDate(date));
+  }, [date]);
 
   return (
     <div>
@@ -18,17 +27,17 @@ export default function PublicationDateSelect() {
         <Select
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
-          value={age}
+          value={publicationDate}
           onChange={handleChange}
           autoWidth
-          label="Age"
+          label="publicationDate"
         >
-          <MenuItem value="">
+          <MenuItem value="last week">
             <em>Last Week</em>
           </MenuItem>
-          <MenuItem value={21}>Last 24 hours</MenuItem>
-          <MenuItem value={10}>Last 48 hours</MenuItem>
-          <MenuItem value={22}>Last Month</MenuItem>
+          <MenuItem value={"last 24"}>Last 24 hours</MenuItem>
+          <MenuItem value={"last 48"}>Last 48 hours</MenuItem>
+          <MenuItem value={"last month"}>Last Month</MenuItem>
         </Select>
       </FormControl>
     </div>

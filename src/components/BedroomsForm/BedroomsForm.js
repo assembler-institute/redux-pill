@@ -1,92 +1,93 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function TypeOfHouseForm() {
-  const [state, setState] = React.useState({
-    gilad: true,
-    jason: false,
-    antoine: false,
+import { setBedrooms } from "../../redux/search/actions";
+
+export default function BedroomsForm() {
+  const dispatch = useDispatch();
+  const [number, setNumber] = useState({
+    zero: true,
+    one: true,
+    two: true,
+    three: true,
+    more: true,
   });
+  const { bedrooms } = useSelector((state) => state.search);
 
   const handleChange = (event) => {
-    setState({
-      ...state,
+    setNumber({
+      ...number,
       [event.target.name]: event.target.checked,
     });
   };
 
-  const { gilad, jason, antoine } = state;
-  const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
-
+  useEffect(() => {
+    dispatch(setBedrooms(number));
+  }, [number]);
   return (
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
-        <FormLabel component="legend">Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={
-              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+              <Checkbox
+                checked={bedrooms.zero}
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="zero"
+              />
             }
-            label="Gilad Gray"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox checked={jason} onChange={handleChange} name="jason" />
-            }
-            label="Jason Killian"
+            label="0 (studio)"
           />
           <FormControlLabel
             control={
               <Checkbox
-                checked={antoine}
-                onChange={handleChange}
-                name="antoine"
+                checked={bedrooms.one}
+                onChange={(e) => handleChange(e)}
+                name="one"
               />
             }
-            label="Antoine Llorca"
-          />
-        </FormGroup>
-        <FormHelperText>Be careful</FormHelperText>
-      </FormControl>
-      <FormControl
-        required
-        error={error}
-        component="fieldset"
-        sx={{ m: 3 }}
-        variant="standard"
-      >
-        <FormLabel component="legend">Pick two</FormLabel>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
-            }
-            label="Gilad Gray"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox checked={jason} onChange={handleChange} name="jason" />
-            }
-            label="Jason Killian"
+            label="1"
           />
           <FormControlLabel
             control={
               <Checkbox
-                checked={antoine}
-                onChange={handleChange}
-                name="antoine"
+                checked={bedrooms.two}
+                onChange={(e) => handleChange(e)}
+                name="two"
               />
             }
-            label="Antoine Llorca"
+            label="2"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={bedrooms.three}
+                onChange={(e) => handleChange(e)}
+                name="three"
+              />
+            }
+            label="3"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={bedrooms.more}
+                onChange={(e) => handleChange(e)}
+                name="more"
+              />
+            }
+            label="4 or +"
           />
         </FormGroup>
-        <FormHelperText>You can display an error</FormHelperText>
+        <FormHelperText>Select as many as you want</FormHelperText>
       </FormControl>
     </Box>
   );

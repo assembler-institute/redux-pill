@@ -7,28 +7,30 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setTypeHouse } from "../../redux/search/actions";
+import { setMoreFilters } from "../../redux/search/actions";
 
-export default function TypeOfHouseForm() {
+export default function MoreFilters() {
   const dispatch = useDispatch();
-  const [type, setType] = useState({
-    flat: true,
-    house: true,
-    duplex: true,
-    penthouse: true,
+  const [filter, setFilters] = useState({
+    pets: false,
+    lift: false,
+    garden: false,
+    air: false,
+    swimmingPool: false,
+    terrace: false,
   });
-  const { typeOfHouse } = useSelector((state) => state.search);
+  const { moreFilters } = useSelector((state) => state.search);
 
   const handleChange = (event) => {
-    setType({
-      ...type,
+    setFilters({
+      ...filter,
       [event.target.name]: event.target.checked,
     });
   };
 
   useEffect(() => {
-    dispatch(setTypeHouse(type));
-  }, [type]);
+    dispatch(setMoreFilters(filter));
+  }, [filter]);
   return (
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
@@ -36,44 +38,64 @@ export default function TypeOfHouseForm() {
           <FormControlLabel
             control={
               <Checkbox
-                checked={typeOfHouse.flat}
+                checked={moreFilters.pets}
                 onChange={(e) => {
                   handleChange(e);
                 }}
-                name="flat"
+                name="pets"
               />
             }
-            label="Flat/Apartment"
+            label="Pets allowed"
           />
           <FormControlLabel
             control={
               <Checkbox
-                checked={typeOfHouse.house}
+                checked={moreFilters.lift}
                 onChange={(e) => handleChange(e)}
-                name="house"
+                name="lift"
               />
             }
-            label="House"
+            label="Lift"
           />
           <FormControlLabel
             control={
               <Checkbox
-                checked={typeOfHouse.duplex}
+                checked={moreFilters.garden}
                 onChange={(e) => handleChange(e)}
-                name="duplex"
+                name="garden"
               />
             }
-            label="Duplex"
+            label="Garden"
           />
           <FormControlLabel
             control={
               <Checkbox
-                checked={typeOfHouse.penthouse}
+                checked={moreFilters.air}
                 onChange={(e) => handleChange(e)}
-                name="penthouse"
+                name="air"
               />
             }
-            label="Penthouse"
+            label="Air Conditioning"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={moreFilters.swimmingPool}
+                onChange={(e) => handleChange(e)}
+                name="swimmingPool"
+              />
+            }
+            label="Swimming Pool"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={moreFilters.terrace}
+                onChange={(e) => handleChange(e)}
+                name="terrace"
+              />
+            }
+            label="Terrace"
           />
         </FormGroup>
         <FormHelperText>Select as many as you want</FormHelperText>

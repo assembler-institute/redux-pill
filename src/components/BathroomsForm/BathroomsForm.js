@@ -7,28 +7,27 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setTypeHouse } from "../../redux/search/actions";
+import { setBathrooms } from "../../redux/search/actions";
 
-export default function TypeOfHouseForm() {
+export default function BathroomsForm() {
   const dispatch = useDispatch();
-  const [type, setType] = useState({
-    flat: true,
-    house: true,
-    duplex: true,
-    penthouse: true,
+  const [number, setNumber] = useState({
+    one: true,
+    two: true,
+    more: true,
   });
-  const { typeOfHouse } = useSelector((state) => state.search);
+  const { bathrooms } = useSelector((state) => state.search);
 
   const handleChange = (event) => {
-    setType({
-      ...type,
+    setNumber({
+      ...number,
       [event.target.name]: event.target.checked,
     });
   };
 
   useEffect(() => {
-    dispatch(setTypeHouse(type));
-  }, [type]);
+    dispatch(setBathrooms(number));
+  }, [number]);
   return (
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
@@ -36,44 +35,32 @@ export default function TypeOfHouseForm() {
           <FormControlLabel
             control={
               <Checkbox
-                checked={typeOfHouse.flat}
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                name="flat"
+                checked={bathrooms.one}
+                onChange={(e) => handleChange(e)}
+                name="one"
               />
             }
-            label="Flat/Apartment"
+            label="1"
           />
           <FormControlLabel
             control={
               <Checkbox
-                checked={typeOfHouse.house}
+                checked={bathrooms.two}
                 onChange={(e) => handleChange(e)}
-                name="house"
+                name="two"
               />
             }
-            label="House"
+            label="2"
           />
           <FormControlLabel
             control={
               <Checkbox
-                checked={typeOfHouse.duplex}
+                checked={bathrooms.more}
                 onChange={(e) => handleChange(e)}
-                name="duplex"
+                name="more"
               />
             }
-            label="Duplex"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={typeOfHouse.penthouse}
-                onChange={(e) => handleChange(e)}
-                name="penthouse"
-              />
-            }
-            label="Penthouse"
+            label="3 or +"
           />
         </FormGroup>
         <FormHelperText>Select as many as you want</FormHelperText>
