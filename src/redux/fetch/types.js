@@ -1,0 +1,5 @@
+export const actionTypes = {
+  DATA_LOADING: "DATA_LOADING",
+  DATA_ERROR: "DATA_ERROR",
+  DATA_SUCCESS: "DATA_SUCCESS",
+};
