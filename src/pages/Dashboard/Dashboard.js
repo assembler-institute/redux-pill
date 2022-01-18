@@ -6,7 +6,7 @@ import CustomizedInputBase from "../../components/MainSearchInput/MainSearchInpu
 import SimpleContainer from "../../components/Container/Container";
 import FilterGrid from "../../components/FilterGrid/FilterGrid";
 import ResultBox from "../../components/ResultBox/ResultBox";
-import fetchCondos from "../../db/seed-data";
+import { fetchCondos } from "../../db/seed-data";
 import { dataError, dataLoading, dataSuccess } from "../../redux/fetch/actions";
 
 function Dashboard() {

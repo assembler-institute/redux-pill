@@ -6,12 +6,17 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { setTypeHouse } from "../../redux/search/actions";
+import { setNewLocationChecks } from "../../utils/setNewLocation";
 
 export default function TypeOfHouseForm() {
   const dispatch = useDispatch();
   const { typeOfHouse } = useSelector((state) => state.search);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const filter = "type";
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -22,12 +27,12 @@ export default function TypeOfHouseForm() {
               <Checkbox
                 checked={typeOfHouse.flat}
                 onChange={(e) => {
-                  dispatch(
-                    setTypeHouse({
-                      ...typeOfHouse,
-                      [e.target.name]: e.target.checked,
-                    })
-                  );
+                  const newState = {
+                    ...typeOfHouse,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setTypeHouse(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
                 }}
                 name="flat"
               />
@@ -38,14 +43,14 @@ export default function TypeOfHouseForm() {
             control={
               <Checkbox
                 checked={typeOfHouse.house}
-                onChange={(e) =>
-                  dispatch(
-                    setTypeHouse({
-                      ...typeOfHouse,
-                      [e.target.name]: e.target.checked,
-                    })
-                  )
-                }
+                onChange={(e) => {
+                  const newState = {
+                    ...typeOfHouse,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setTypeHouse(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
+                }}
                 name="house"
               />
             }
@@ -55,14 +60,14 @@ export default function TypeOfHouseForm() {
             control={
               <Checkbox
                 checked={typeOfHouse.duplex}
-                onChange={(e) =>
-                  dispatch(
-                    setTypeHouse({
-                      ...typeOfHouse,
-                      [e.target.name]: e.target.checked,
-                    })
-                  )
-                }
+                onChange={(e) => {
+                  const newState = {
+                    ...typeOfHouse,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setTypeHouse(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
+                }}
                 name="duplex"
               />
             }
@@ -72,14 +77,14 @@ export default function TypeOfHouseForm() {
             control={
               <Checkbox
                 checked={typeOfHouse.penthouse}
-                onChange={(e) =>
-                  dispatch(
-                    setTypeHouse({
-                      ...typeOfHouse,
-                      [e.target.name]: e.target.checked,
-                    })
-                  )
-                }
+                onChange={(e) => {
+                  const newState = {
+                    ...typeOfHouse,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setTypeHouse(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
+                }}
                 name="penthouse"
               />
             }

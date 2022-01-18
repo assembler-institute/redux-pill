@@ -34,7 +34,7 @@
       "province": "Barcelona",
       "country": "Spain",
       "status": "available",
-      "type": "flat/apartment",
+      "type": "flat",
       "description": "This is the description of the property",
       "contact_mail": "pepito@assemblerschool.com",
       "contact_phone": "+344767574657",
@@ -48,7 +48,8 @@
       "air_conditioning": true,
       "swimming_pool": false,
       "terrace": true,
-      "publication_date": "2020/12/01 01:01:01"
+      "publication_date": "2020/12/01 01:01:01",
+      "equipment": "fully"
     },
     {
       "id": 2,
@@ -58,7 +59,7 @@
       "province": "Toledo",
       "country": "Spain",
       "status": "available",
-      "type": "flat/apartment",
+      "type": "flat",
       "description": "This is the description of the property",
       "contact_mail": "pepito@assemblerschool.com",
       "contact_phone": "+344767574657",
@@ -72,7 +73,8 @@
       "air_conditioning": true,
       "swimming_pool": false,
       "terrace": true,
-      "publication_date": "2020/12/01 01:01:01"
+      "publication_date": "2020/12/01 01:01:01",
+      "equipment": "partially"
     },
     {
       "id": 3,
@@ -96,7 +98,8 @@
       "air_conditioning": true,
       "swimming_pool": true,
       "terrace": true,
-      "publication_date": "2020/12/01 01:01:01"
+      "publication_date": "2020/12/01 01:01:01",
+      "equipment": "empty"
     }
   ],
   "favorite": [

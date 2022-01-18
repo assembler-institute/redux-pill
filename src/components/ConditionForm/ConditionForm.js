@@ -6,12 +6,17 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
+import { setNewLocationChecks } from "../../utils/setNewLocation";
 import { setCondition } from "../../redux/search/actions";
 
 export default function ConditionForm() {
   const dispatch = useDispatch();
   const { condition } = useSelector((state) => state.search);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const filter = "condition";
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -21,13 +26,13 @@ export default function ConditionForm() {
             control={
               <Checkbox
                 checked={condition.new}
-                onChange={(event) => {
-                  dispatch(
-                    setCondition({
-                      ...condition,
-                      [event.target.name]: event.target.checked,
-                    })
-                  );
+                onChange={(e) => {
+                  const newState = {
+                    ...condition,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setCondition(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
                 }}
                 name="new"
               />
@@ -38,13 +43,13 @@ export default function ConditionForm() {
             control={
               <Checkbox
                 checked={condition.good}
-                onChange={(event) => {
-                  dispatch(
-                    setCondition({
-                      ...condition,
-                      [event.target.name]: event.target.checked,
-                    })
-                  );
+                onChange={(e) => {
+                  const newState = {
+                    ...condition,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setCondition(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
                 }}
                 name="good"
               />
@@ -55,13 +60,13 @@ export default function ConditionForm() {
             control={
               <Checkbox
                 checked={condition.renovation}
-                onChange={(event) => {
-                  dispatch(
-                    setCondition({
-                      ...condition,
-                      [event.target.name]: event.target.checked,
-                    })
-                  );
+                onChange={(e) => {
+                  const newState = {
+                    ...condition,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setCondition(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
                 }}
                 name="renovation"
               />

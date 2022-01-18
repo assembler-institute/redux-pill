@@ -6,12 +6,16 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
+import { setNewLocationMoreFilters } from "../../utils/setNewLocation";
 import { setMoreFilters } from "../../redux/search/actions";
 
 export default function MoreFilters() {
   const dispatch = useDispatch();
   const { moreFilters } = useSelector((state) => state.search);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -28,6 +32,7 @@ export default function MoreFilters() {
                       [event.target.name]: event.target.checked,
                     })
                   );
+                  navigate(setNewLocationMoreFilters(location, event.target));
                 }}
                 name="pets"
               />
@@ -45,6 +50,7 @@ export default function MoreFilters() {
                       [event.target.name]: event.target.checked,
                     })
                   );
+                  navigate(setNewLocationMoreFilters(location, event.target));
                 }}
                 name="lift"
               />
@@ -62,6 +68,7 @@ export default function MoreFilters() {
                       [event.target.name]: event.target.checked,
                     })
                   );
+                  navigate(setNewLocationMoreFilters(location, event.target));
                 }}
                 name="garden"
               />
@@ -79,6 +86,7 @@ export default function MoreFilters() {
                       [event.target.name]: event.target.checked,
                     })
                   );
+                  navigate(setNewLocationMoreFilters(location, event.target));
                 }}
                 name="air"
               />
@@ -96,6 +104,7 @@ export default function MoreFilters() {
                       [event.target.name]: event.target.checked,
                     })
                   );
+                  navigate(setNewLocationMoreFilters(location, event.target));
                 }}
                 name="swimmingPool"
               />
@@ -113,6 +122,7 @@ export default function MoreFilters() {
                       [event.target.name]: event.target.checked,
                     })
                   );
+                  navigate(setNewLocationMoreFilters(location, event.target));
                 }}
                 name="terrace"
               />

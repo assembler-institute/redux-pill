@@ -6,13 +6,17 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { setBedrooms } from "../../redux/search/actions";
+import { setNewLocationChecks } from "../../utils/setNewLocation";
 
 export default function BedroomsForm() {
   const dispatch = useDispatch();
   const { bedrooms } = useSelector((state) => state.search);
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const filter = "rooms";
   return (
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
@@ -21,14 +25,14 @@ export default function BedroomsForm() {
             control={
               <Checkbox
                 checked={bedrooms.zero}
-                onChange={(event) =>
-                  dispatch(
-                    setBedrooms({
-                      ...bedrooms,
-                      [event.target.name]: event.target.checked,
-                    })
-                  )
-                }
+                onChange={(e) => {
+                  const newState = {
+                    ...bedrooms,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setBedrooms(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
+                }}
                 name="zero"
               />
             }
@@ -38,14 +42,14 @@ export default function BedroomsForm() {
             control={
               <Checkbox
                 checked={bedrooms.one}
-                onChange={(event) =>
-                  dispatch(
-                    setBedrooms({
-                      ...bedrooms,
-                      [event.target.name]: event.target.checked,
-                    })
-                  )
-                }
+                onChange={(e) => {
+                  const newState = {
+                    ...bedrooms,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setBedrooms(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
+                }}
                 name="one"
               />
             }
@@ -55,14 +59,14 @@ export default function BedroomsForm() {
             control={
               <Checkbox
                 checked={bedrooms.two}
-                onChange={(event) =>
-                  dispatch(
-                    setBedrooms({
-                      ...bedrooms,
-                      [event.target.name]: event.target.checked,
-                    })
-                  )
-                }
+                onChange={(e) => {
+                  const newState = {
+                    ...bedrooms,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setBedrooms(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
+                }}
                 name="two"
               />
             }
@@ -72,14 +76,14 @@ export default function BedroomsForm() {
             control={
               <Checkbox
                 checked={bedrooms.three}
-                onChange={(event) =>
-                  dispatch(
-                    setBedrooms({
-                      ...bedrooms,
-                      [event.target.name]: event.target.checked,
-                    })
-                  )
-                }
+                onChange={(e) => {
+                  const newState = {
+                    ...bedrooms,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setBedrooms(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
+                }}
                 name="three"
               />
             }
@@ -89,14 +93,14 @@ export default function BedroomsForm() {
             control={
               <Checkbox
                 checked={bedrooms.more}
-                onChange={(event) =>
-                  dispatch(
-                    setBedrooms({
-                      ...bedrooms,
-                      [event.target.name]: event.target.checked,
-                    })
-                  )
-                }
+                onChange={(e) => {
+                  const newState = {
+                    ...bedrooms,
+                    [e.target.name]: e.target.checked,
+                  };
+                  dispatch(setBedrooms(newState));
+                  navigate(setNewLocationChecks(location, filter, newState));
+                }}
                 name="more"
               />
             }

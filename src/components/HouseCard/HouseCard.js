@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -17,7 +16,6 @@ import {
 } from "@mui/icons-material";
 
 export default function HouseCard(props) {
-  const theme = useTheme();
   const { house } = props;
 
   return (
