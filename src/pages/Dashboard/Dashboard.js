@@ -8,15 +8,18 @@ import FilterGrid from "../../components/FilterGrid/FilterGrid";
 import ResultBox from "../../components/ResultBox/ResultBox";
 import { fetchCondos } from "../../db/seed-data";
 import { dataError, dataLoading, dataSuccess } from "../../redux/fetch/actions";
+import { useLocation } from "react-router-dom";
 
 function Dashboard() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const globalState = useSelector((state) => state.search);
   useEffect(() => {
+    console.log(location.search);
     dispatch(dataLoading());
     (async function fetchData() {
       try {
-        const properties = await fetchCondos(dispatch);
+        const properties = await fetchCondos(location.search);
         dispatch(dataSuccess(properties));
       } catch (err) {
         dispatch(dataError(err));

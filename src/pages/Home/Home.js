@@ -6,6 +6,8 @@ import CustomizedInputBase from "../../components/MainSearchInput/MainSearchInpu
 import withLayout from "../../hoc/withLayout/withLayout";
 
 import "./Home.scss";
+import { Box } from "@mui/material";
+import PopularList from "../../components/PopularList/PopularList";
 
 function Home() {
   return (
@@ -14,10 +16,20 @@ function Home() {
         <OutlinedCard />
         <CustomizedInputBase />
       </div>
-      <Typography variant="h5" gutterBottom component="div">
-        Popular Listing
-      </Typography>
-      <div className="gridPopular"></div>
+      <Box
+        sx={{
+          margin: "2rem 5rem",
+          borderRadius: "0.3rem",
+          border: "1px solid #6fbf73",
+          padding: "1rem",
+          textAlign: "center",
+        }}
+      >
+        <Typography variant="h5" gutterBottom component="div">
+          Popular Listing
+        </Typography>
+        <PopularList sx={{ margin: "auto" }} />
+      </Box>
     </>
   );
 }

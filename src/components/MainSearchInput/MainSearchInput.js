@@ -5,20 +5,22 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import DirectionsIcon from "@mui/icons-material/Directions";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as _ from "lodash";
 
 import { searchFilter } from "../../redux/search/actions";
+import { setNewLocationInput } from "../../utils/setNewLocation";
 
 export default function CustomizedInputBase() {
   const dispatch = useDispatch();
   const { searchedValue } = useSelector((state) => state.search);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (event) => {
-    console.log("working");
     dispatch(searchFilter(event.target.value));
+    navigate(setNewLocationInput(location, event.target.value));
   };
 
   const debouncedChangeHandler = _.debounce(handleChange, 300);
@@ -30,7 +32,7 @@ export default function CustomizedInputBase() {
       onSubmit={(e) => {
         e.preventDefault();
         dispatch(searchFilter(e.target[0].value));
-        navigate("/dashboard");
+        navigate(setNewLocationInput(location, e.target[0].value));
       }}
     >
       <InputBase

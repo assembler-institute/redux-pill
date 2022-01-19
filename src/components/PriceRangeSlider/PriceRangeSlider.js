@@ -10,11 +10,11 @@ import { setNewLocationPrice } from "../../utils/setNewLocation";
 const marks = [
   {
     value: 20000,
-    label: "20000€",
+    label: "20k",
   },
   {
     value: 500000,
-    label: "500000€",
+    label: "50k",
   },
 ];
 
@@ -25,7 +25,7 @@ export default function PriceRangeSlider() {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ width: 260, marginLeft: "1.1rem" }}>
+    <Box sx={{ width: "auto", marginLeft: "1.1rem" }}>
       <Slider
         value={priceRange}
         onChange={(event, newValue) => {

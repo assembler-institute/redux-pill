@@ -7,6 +7,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
 
 import { setNewLocationChecks } from "../../utils/setNewLocation";
 import { setCondition } from "../../redux/search/actions";
@@ -22,57 +23,71 @@ export default function ConditionForm() {
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
         <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={condition.new}
-                onChange={(e) => {
-                  const newState = {
-                    ...condition,
-                    [e.target.name]: e.target.checked,
-                  };
-                  dispatch(setCondition(newState));
-                  navigate(setNewLocationChecks(location, filter, newState));
-                }}
-                name="new"
+          <Grid container>
+            <Grid item xs={12} lg={6}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={condition.new}
+                    onChange={(e) => {
+                      const newState = {
+                        ...condition,
+                        [e.target.name]: e.target.checked,
+                      };
+                      dispatch(setCondition(newState));
+                      navigate(
+                        setNewLocationChecks(location, filter, newState)
+                      );
+                    }}
+                    name="new"
+                  />
+                }
+                label="New"
               />
-            }
-            label="New"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={condition.good}
-                onChange={(e) => {
-                  const newState = {
-                    ...condition,
-                    [e.target.name]: e.target.checked,
-                  };
-                  dispatch(setCondition(newState));
-                  navigate(setNewLocationChecks(location, filter, newState));
-                }}
-                name="good"
+            </Grid>
+            <Grid item xs={12} lg={6}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={condition.good}
+                    onChange={(e) => {
+                      const newState = {
+                        ...condition,
+                        [e.target.name]: e.target.checked,
+                      };
+                      dispatch(setCondition(newState));
+                      navigate(
+                        setNewLocationChecks(location, filter, newState)
+                      );
+                    }}
+                    name="good"
+                  />
+                }
+                label="Good Condition"
               />
-            }
-            label="Good Condition"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={condition.renovation}
-                onChange={(e) => {
-                  const newState = {
-                    ...condition,
-                    [e.target.name]: e.target.checked,
-                  };
-                  dispatch(setCondition(newState));
-                  navigate(setNewLocationChecks(location, filter, newState));
-                }}
-                name="renovation"
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={condition.renovation}
+                    onChange={(e) => {
+                      const newState = {
+                        ...condition,
+                        [e.target.name]: e.target.checked,
+                      };
+                      dispatch(setCondition(newState));
+                      navigate(
+                        setNewLocationChecks(location, filter, newState)
+                      );
+                    }}
+                    name="renovation"
+                  />
+                }
+                label="Needs Renovation"
               />
-            }
-            label="Needs Renovation"
-          />
+            </Grid>
+          </Grid>
         </FormGroup>
         <FormHelperText>Select as many as you want</FormHelperText>
       </FormControl>

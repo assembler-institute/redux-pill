@@ -35,7 +35,7 @@ export default function FilterGrid() {
       }}
     >
       <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           <Item>
             <Typography variant="h6" gutterBottom component="div">
               Type of House
@@ -43,7 +43,7 @@ export default function FilterGrid() {
             <TypeOfHouseForm />
           </Item>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           <Item>
             <Typography variant="h6" gutterBottom component="div">
               Bedrooms
@@ -51,7 +51,7 @@ export default function FilterGrid() {
             <BedroomsForm />
           </Item>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           <Item>
             <Typography variant="h6" gutterBottom component="div">
               Bathrooms
@@ -59,7 +59,7 @@ export default function FilterGrid() {
             <BathroomsForm />
           </Item>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           <Item>
             <Typography variant="h6" gutterBottom component="div">
               Equipment
@@ -67,7 +67,7 @@ export default function FilterGrid() {
             <EquipmentSelect />
           </Item>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           <Item>
             <Typography variant="h6" gutterBottom component="div">
               Condition
@@ -75,7 +75,7 @@ export default function FilterGrid() {
             <ConditionForm />
           </Item>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           <Item>
             <Typography variant="h6" gutterBottom component="div">
               Price Range
@@ -83,7 +83,7 @@ export default function FilterGrid() {
             <PriceRangeSlider />
           </Item>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           <Item>
             <Typography variant="h6" gutterBottom component="div">
               Publication Date
@@ -91,7 +91,7 @@ export default function FilterGrid() {
             <PublicationDateSelect />
           </Item>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           <Item>
             <Typography variant="h6" gutterBottom component="div">
               More Filters

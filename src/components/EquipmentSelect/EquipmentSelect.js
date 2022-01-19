@@ -10,6 +10,7 @@ import {
   setNewLocationChecks,
   setNewLocationSelect,
 } from "../../utils/setNewLocation";
+import "./Equipment.scss";
 import { setEquipment } from "../../redux/search/actions";
 
 export default function EquipmentSelect() {
@@ -21,7 +22,7 @@ export default function EquipmentSelect() {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 200 }}>
+      <FormControl sx={{ m: 1 }} className="formEquipment">
         <InputLabel id="demo-simple-select-autowidth-label">
           Equipment
         </InputLabel>

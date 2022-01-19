@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { setNewLocationChecks } from "../../utils/setNewLocation";
 import { setBathrooms } from "../../redux/search/actions";
+import { Grid } from "@mui/material";
 
 export default function BathroomsForm() {
   const dispatch = useDispatch();
@@ -21,57 +22,71 @@ export default function BathroomsForm() {
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
         <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={bathrooms.one}
-                onChange={(e) => {
-                  const newState = {
-                    ...bathrooms,
-                    [e.target.name]: e.target.checked,
-                  };
-                  dispatch(setBathrooms(newState));
-                  navigate(setNewLocationChecks(location, filter, newState));
-                }}
-                name="one"
+          <Grid container justifyContent={"flex-start"}>
+            <Grid item xs={12} sm={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={bathrooms.one}
+                    onChange={(e) => {
+                      const newState = {
+                        ...bathrooms,
+                        [e.target.name]: e.target.checked,
+                      };
+                      dispatch(setBathrooms(newState));
+                      navigate(
+                        setNewLocationChecks(location, filter, newState)
+                      );
+                    }}
+                    name="one"
+                  />
+                }
+                label="1"
               />
-            }
-            label="1"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={bathrooms.two}
-                onChange={(e) => {
-                  const newState = {
-                    ...bathrooms,
-                    [e.target.name]: e.target.checked,
-                  };
-                  dispatch(setBathrooms(newState));
-                  navigate(setNewLocationChecks(location, filter, newState));
-                }}
-                name="two"
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={bathrooms.two}
+                    onChange={(e) => {
+                      const newState = {
+                        ...bathrooms,
+                        [e.target.name]: e.target.checked,
+                      };
+                      dispatch(setBathrooms(newState));
+                      navigate(
+                        setNewLocationChecks(location, filter, newState)
+                      );
+                    }}
+                    name="two"
+                  />
+                }
+                label="2"
               />
-            }
-            label="2"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={bathrooms.more}
-                onChange={(e) => {
-                  const newState = {
-                    ...bathrooms,
-                    [e.target.name]: e.target.checked,
-                  };
-                  dispatch(setBathrooms(newState));
-                  navigate(setNewLocationChecks(location, filter, newState));
-                }}
-                name="more"
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={bathrooms.more}
+                    onChange={(e) => {
+                      const newState = {
+                        ...bathrooms,
+                        [e.target.name]: e.target.checked,
+                      };
+                      dispatch(setBathrooms(newState));
+                      navigate(
+                        setNewLocationChecks(location, filter, newState)
+                      );
+                    }}
+                    name="more"
+                  />
+                }
+                label="more"
               />
-            }
-            label="3 or +"
-          />
+            </Grid>
+          </Grid>
         </FormGroup>
         <FormHelperText>Select as many as you want</FormHelperText>
       </FormControl>

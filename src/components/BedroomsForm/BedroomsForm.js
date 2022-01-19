@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { setBedrooms } from "../../redux/search/actions";
 import { setNewLocationChecks } from "../../utils/setNewLocation";
+import { Grid } from "@mui/material";
 
 export default function BedroomsForm() {
   const dispatch = useDispatch();
@@ -21,91 +22,113 @@ export default function BedroomsForm() {
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
         <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={bedrooms.zero}
-                onChange={(e) => {
-                  const newState = {
-                    ...bedrooms,
-                    [e.target.name]: e.target.checked,
-                  };
-                  dispatch(setBedrooms(newState));
-                  navigate(setNewLocationChecks(location, filter, newState));
-                }}
-                name="zero"
+          <Grid container justifyContent={"flex-start"}>
+            <Grid item xs={12} md={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={bedrooms.zero}
+                    onChange={(e) => {
+                      const newState = {
+                        ...bedrooms,
+                        [e.target.name]: e.target.checked,
+                      };
+                      dispatch(setBedrooms(newState));
+                      navigate(
+                        setNewLocationChecks(location, filter, newState)
+                      );
+                    }}
+                    name="zero"
+                  />
+                }
+                label="studio"
               />
-            }
-            label="0 (studio)"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={bedrooms.one}
-                onChange={(e) => {
-                  const newState = {
-                    ...bedrooms,
-                    [e.target.name]: e.target.checked,
-                  };
-                  dispatch(setBedrooms(newState));
-                  navigate(setNewLocationChecks(location, filter, newState));
-                }}
-                name="one"
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={bedrooms.one}
+                    onChange={(e) => {
+                      const newState = {
+                        ...bedrooms,
+                        [e.target.name]: e.target.checked,
+                      };
+                      dispatch(setBedrooms(newState));
+                      navigate(
+                        setNewLocationChecks(location, filter, newState)
+                      );
+                    }}
+                    name="one"
+                  />
+                }
+                label="1"
               />
-            }
-            label="1"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={bedrooms.two}
-                onChange={(e) => {
-                  const newState = {
-                    ...bedrooms,
-                    [e.target.name]: e.target.checked,
-                  };
-                  dispatch(setBedrooms(newState));
-                  navigate(setNewLocationChecks(location, filter, newState));
-                }}
-                name="two"
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={bedrooms.two}
+                    onChange={(e) => {
+                      const newState = {
+                        ...bedrooms,
+                        [e.target.name]: e.target.checked,
+                      };
+                      dispatch(setBedrooms(newState));
+                      navigate(
+                        setNewLocationChecks(location, filter, newState)
+                      );
+                    }}
+                    name="two"
+                  />
+                }
+                label="2"
               />
-            }
-            label="2"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={bedrooms.three}
-                onChange={(e) => {
-                  const newState = {
-                    ...bedrooms,
-                    [e.target.name]: e.target.checked,
-                  };
-                  dispatch(setBedrooms(newState));
-                  navigate(setNewLocationChecks(location, filter, newState));
-                }}
-                name="three"
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={bedrooms.three}
+                    onChange={(e) => {
+                      const newState = {
+                        ...bedrooms,
+                        [e.target.name]: e.target.checked,
+                      };
+                      dispatch(setBedrooms(newState));
+                      navigate(
+                        setNewLocationChecks(location, filter, newState)
+                      );
+                    }}
+                    name="three"
+                  />
+                }
+                label="3"
               />
-            }
-            label="3"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={bedrooms.more}
-                onChange={(e) => {
-                  const newState = {
-                    ...bedrooms,
-                    [e.target.name]: e.target.checked,
-                  };
-                  dispatch(setBedrooms(newState));
-                  navigate(setNewLocationChecks(location, filter, newState));
-                }}
-                name="more"
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={bedrooms.more}
+                    onChange={(e) => {
+                      const newState = {
+                        ...bedrooms,
+                        [e.target.name]: e.target.checked,
+                      };
+                      dispatch(setBedrooms(newState));
+                      navigate(
+                        setNewLocationChecks(location, filter, newState)
+                      );
+                    }}
+                    name="more"
+                  />
+                }
+                label="more"
               />
-            }
-            label="4 or +"
-          />
+            </Grid>
+          </Grid>
         </FormGroup>
         <FormHelperText>Select as many as you want</FormHelperText>
       </FormControl>

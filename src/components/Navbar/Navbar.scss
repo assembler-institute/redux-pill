@@ -1,0 +1,37 @@
+
+.typo {
+    text-decoration: "none";
+    color: white;
+    &:hover {
+        color: #c6ff00,
+    };
+}
+
+@media only screen and (min-width: 768px){
+    .dashboardLink {
+        text-decoration: none;
+        margin-left: 60rem;
+    }
+}
+
+@media only screen and (max-width: 1200px){
+    .dashboardLink {
+        text-decoration: none;
+        margin-left: 45rem;
+    }
+}
+
+@media only screen and (max-width: 900px){
+    .dashboardLink {
+        text-decoration: none;
+        margin-left: 35rem;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .dashboardLink {
+        text-decoration: none;
+        margin-left: 15rem;
+    }
+}
+

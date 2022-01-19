@@ -59,6 +59,18 @@ export function setNewLocationPrice(location, range) {
   };
 }
 
+export function setNewLocationInput(location, query) {
+  let params = new URLSearchParams(location.search);
+
+  params.set("q", query);
+  params = params.toString();
+
+  return {
+    pathname: "/dashboard",
+    search: params,
+  };
+}
+
 function valueToNumber(filter, value) {
   switch (value) {
     case "zero":

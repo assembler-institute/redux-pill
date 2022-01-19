@@ -39,6 +39,11 @@ export default function ResultBox() {
             return <HouseCard key={house.id} house={house} />;
           })
         : null}
+      {/* {DataFetched && DataFetched === [] ? (
+        <Typography variant="h6" gutterBottom component="div">
+          You are asking for the impossible! We do not have houses like that
+        </Typography>
+      ) : null} */}
     </Box>
   );
 }

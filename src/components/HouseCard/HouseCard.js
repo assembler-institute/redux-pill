@@ -42,23 +42,36 @@ export default function HouseCard(props) {
             color="text.secondary"
             component="div"
           >{`${house.description}`}</Typography>
+          <Typography
+            variant="subtitle1"
+            color="text.secondary"
+            component="div"
+          >{`${house.price}€`}</Typography>
         </CardContent>
         <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-          <Bed sx={{ height: 38, width: 38 }} />
+          <Bed sx={{ height: 38, width: 38, margin: "0 0.5rem" }} />
           <Typography>{house.room}</Typography>
-          <Bathtub sx={{ height: 38, width: 38 }} />
+          <Bathtub sx={{ height: 38, width: 38, margin: "0 0.5rem" }} />
           <Typography>{house.bath}</Typography>
-          <CropSquare sx={{ height: 38, width: 38 }} />
+          <CropSquare sx={{ height: 38, width: 38, margin: "0 0.5rem" }} />
           <Typography>{house.size}</Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-          {house.pet ? <Pets sx={{ height: 38, width: 38 }} /> : null}
-          {house.garden ? <Yard sx={{ height: 38, width: 38 }} /> : null}
-          {house.air_conditioning ? (
-            <AcUnit sx={{ height: 38, width: 38 }} />
+          {house.pet ? (
+            <Pets sx={{ height: 38, width: 38, margin: "0 0.5rem" }} />
           ) : null}
-          {house.terrace ? <Deck sx={{ height: 38, width: 38 }} /> : null}
-          {house.swimming_pool ? <Pool sx={{ height: 38, width: 38 }} /> : null}
+          {house.garden ? (
+            <Yard sx={{ height: 38, width: 38, margin: "0 0.5rem" }} />
+          ) : null}
+          {house.air_conditioning ? (
+            <AcUnit sx={{ height: 38, width: 38, margin: "0 0.5rem" }} />
+          ) : null}
+          {house.terrace ? (
+            <Deck sx={{ height: 38, width: 38, margin: "0 0.5rem" }} />
+          ) : null}
+          {house.swimming_pool ? (
+            <Pool sx={{ height: 38, width: 38, margin: "0 0.5rem" }} />
+          ) : null}
         </Box>
       </Box>
       <CardMedia

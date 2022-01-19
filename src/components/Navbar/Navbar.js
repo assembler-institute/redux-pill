@@ -14,6 +14,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link } from "react-router-dom";
 
+import "./Navbar.scss";
+
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -130,19 +132,31 @@ export default function PrimarySearchAppBar() {
               variant="h5"
               noWrap
               component="div"
+              className="typo"
               sx={{
                 display: {
                   xs: "none",
                   sm: "block",
-                  textDecoration: "none",
-                  color: "white",
-                  "&:hover": {
-                    color: "#c6ff00",
-                  },
                 },
               }}
             >
               IDEALIST
+            </Typography>
+          </Link>
+          <Link to="/dashboard" className="dashboardLink">
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              className="typo"
+              sx={{
+                display: {
+                  xs: "none",
+                  sm: "block",
+                },
+              }}
+            >
+              DASHBOARD
             </Typography>
           </Link>
           <Box sx={{ flexGrow: 1 }} />

@@ -7,6 +7,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
 
 import { setNewLocationMoreFilters } from "../../utils/setNewLocation";
 import { setMoreFilters } from "../../redux/search/actions";
@@ -21,114 +22,140 @@ export default function MoreFilters() {
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
         <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={moreFilters.pets}
-                onChange={(event) => {
-                  dispatch(
-                    setMoreFilters({
-                      ...moreFilters,
-                      [event.target.name]: event.target.checked,
-                    })
-                  );
-                  navigate(setNewLocationMoreFilters(location, event.target));
-                }}
-                name="pets"
+          <Grid container>
+            <Grid item xs={12} sm={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={moreFilters.pets}
+                    onChange={(event) => {
+                      dispatch(
+                        setMoreFilters({
+                          ...moreFilters,
+                          [event.target.name]: event.target.checked,
+                        })
+                      );
+                      navigate(
+                        setNewLocationMoreFilters(location, event.target)
+                      );
+                    }}
+                    name="pets"
+                  />
+                }
+                label="Pets"
               />
-            }
-            label="Pets allowed"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={moreFilters.lift}
-                onChange={(event) => {
-                  dispatch(
-                    setMoreFilters({
-                      ...moreFilters,
-                      [event.target.name]: event.target.checked,
-                    })
-                  );
-                  navigate(setNewLocationMoreFilters(location, event.target));
-                }}
-                name="lift"
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={moreFilters.lift}
+                    onChange={(event) => {
+                      dispatch(
+                        setMoreFilters({
+                          ...moreFilters,
+                          [event.target.name]: event.target.checked,
+                        })
+                      );
+                      navigate(
+                        setNewLocationMoreFilters(location, event.target)
+                      );
+                    }}
+                    name="lift"
+                  />
+                }
+                label="Lift"
               />
-            }
-            label="Lift"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={moreFilters.garden}
-                onChange={(event) => {
-                  dispatch(
-                    setMoreFilters({
-                      ...moreFilters,
-                      [event.target.name]: event.target.checked,
-                    })
-                  );
-                  navigate(setNewLocationMoreFilters(location, event.target));
-                }}
-                name="garden"
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={moreFilters.garden}
+                    onChange={(event) => {
+                      dispatch(
+                        setMoreFilters({
+                          ...moreFilters,
+                          [event.target.name]: event.target.checked,
+                        })
+                      );
+                      navigate(
+                        setNewLocationMoreFilters(location, event.target)
+                      );
+                    }}
+                    name="garden"
+                  />
+                }
+                label="Garden"
               />
-            }
-            label="Garden"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={moreFilters.air}
-                onChange={(event) => {
-                  dispatch(
-                    setMoreFilters({
-                      ...moreFilters,
-                      [event.target.name]: event.target.checked,
-                    })
-                  );
-                  navigate(setNewLocationMoreFilters(location, event.target));
-                }}
-                name="air"
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={moreFilters.air}
+                    onChange={(event) => {
+                      dispatch(
+                        setMoreFilters({
+                          ...moreFilters,
+                          [event.target.name]: event.target.checked,
+                        })
+                      );
+                      navigate(
+                        setNewLocationMoreFilters(location, event.target)
+                      );
+                    }}
+                    name="air"
+                  />
+                }
+                label="A. C."
               />
-            }
-            label="Air Conditioning"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={moreFilters.swimmingPool}
-                onChange={(event) => {
-                  dispatch(
-                    setMoreFilters({
-                      ...moreFilters,
-                      [event.target.name]: event.target.checked,
-                    })
-                  );
-                  navigate(setNewLocationMoreFilters(location, event.target));
-                }}
-                name="swimmingPool"
+            </Grid>
+            <Grid item sm={12} lg={8}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={moreFilters.swimmingPool}
+                    onChange={(event) => {
+                      dispatch(
+                        setMoreFilters({
+                          ...moreFilters,
+                          [event.target.name]: event.target.checked,
+                        })
+                      );
+                      navigate(
+                        setNewLocationMoreFilters(location, event.target)
+                      );
+                    }}
+                    name="swimmingPool"
+                  />
+                }
+                label="Swimming Pool"
               />
-            }
-            label="Swimming Pool"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={moreFilters.terrace}
-                onChange={(event) => {
-                  dispatch(
-                    setMoreFilters({
-                      ...moreFilters,
-                      [event.target.name]: event.target.checked,
-                    })
-                  );
-                  navigate(setNewLocationMoreFilters(location, event.target));
-                }}
-                name="terrace"
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={moreFilters.terrace}
+                    onChange={(event) => {
+                      dispatch(
+                        setMoreFilters({
+                          ...moreFilters,
+                          [event.target.name]: event.target.checked,
+                        })
+                      );
+                      navigate(
+                        setNewLocationMoreFilters(location, event.target)
+                      );
+                    }}
+                    name="terrace"
+                  />
+                }
+                label="Terrace"
               />
-            }
-            label="Terrace"
-          />
+            </Grid>
+          </Grid>
         </FormGroup>
         <FormHelperText>Select as many as you want</FormHelperText>
       </FormControl>
