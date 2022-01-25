@@ -14,12 +14,14 @@ function Dashboard() {
   const dispatch = useDispatch();
   const location = useLocation();
   const globalState = useSelector((state) => state.search);
+  const { user } = useSelector((state) => state.auth);
+  const token = user ? user.token : "";
+
   useEffect(() => {
-    console.log(location.search);
     dispatch(dataLoading());
     (async function fetchData() {
       try {
-        const properties = await fetchCondos(location.search);
+        const properties = await fetchCondos(token, location.search);
         dispatch(dataSuccess(properties));
       } catch (err) {
         dispatch(dataError(err));

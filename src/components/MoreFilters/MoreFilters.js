@@ -39,7 +39,7 @@ export default function MoreFilters() {
                         setNewLocationMoreFilters(location, event.target)
                       );
                     }}
-                    name="pets"
+                    name="pet"
                   />
                 }
                 label="Pets"
@@ -105,7 +105,7 @@ export default function MoreFilters() {
                         setNewLocationMoreFilters(location, event.target)
                       );
                     }}
-                    name="air"
+                    name="air_conditioning"
                   />
                 }
                 label="A. C."
@@ -127,7 +127,7 @@ export default function MoreFilters() {
                         setNewLocationMoreFilters(location, event.target)
                       );
                     }}
-                    name="swimmingPool"
+                    name="swimming_pool"
                   />
                 }
                 label="Swimming Pool"

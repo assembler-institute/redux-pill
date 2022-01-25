@@ -13,10 +13,15 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./Navbar.scss";
+import { signOut } from "../../redux/auth/actions";
+import { clearLS } from "../../utils/localStorage";
 
 export default function PrimarySearchAppBar() {
+  const { isAuth, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -114,6 +119,11 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
+  function handleSignOut() {
+    dispatch(signOut());
+    clearLS();
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -143,6 +153,42 @@ export default function PrimarySearchAppBar() {
               IDEALIST
             </Typography>
           </Link>
+          {isAuth ? (
+            <Link to="/auth" className="dashboardLink" onClick={handleSignOut}>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                className="typo"
+                sx={{
+                  display: {
+                    xs: "none",
+                    sm: "block",
+                  },
+                }}
+              >
+                SIGN OUT
+              </Typography>
+            </Link>
+          ) : (
+            <Link to="/auth" className="dashboardLink">
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                className="typo"
+                sx={{
+                  display: {
+                    xs: "none",
+                    sm: "block",
+                  },
+                }}
+              >
+                LOG IN / SIGN UP
+              </Typography>
+            </Link>
+          )}
+
           <Link to="/dashboard" className="dashboardLink">
             <Typography
               variant="h6"

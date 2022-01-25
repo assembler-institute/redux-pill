@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import HouseCard from "../HouseCard/HouseCard";
 
 export default function ResultBox() {
+  const { isAuth } = useSelector((state) => state.auth);
   const { hasError, isLoading, dataFetched } = useSelector(
     (state) => state.fetch
   );
@@ -34,6 +35,11 @@ export default function ResultBox() {
           Loading your perfect house...
         </Typography>
       ) : null}
+      {isAuth ? null : (
+        <Typography variant="h6" gutterBottom component="div">
+          Please, log in or sign up to see your dreamed houses!
+        </Typography>
+      )}
       {dataFetched
         ? dataFetched.map((house) => {
             return <HouseCard key={house.id} house={house} />;

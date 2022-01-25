@@ -17,7 +17,7 @@ export default function BedroomsForm() {
   const { bedrooms } = useSelector((state) => state.search);
   const location = useLocation();
   const navigate = useNavigate();
-  const filter = "rooms";
+  const filter = "room";
   return (
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
