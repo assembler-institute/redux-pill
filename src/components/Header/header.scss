@@ -1,0 +1,17 @@
+@use "../../assets/sass/variables" as v;
+
+.homeHeader {
+  .headerImg {
+    width: 50px;
+    height: auto;
+  }
+  .headerTitle {
+    font-family: v.$titleFont;
+  }
+}
+
+.HeaderBtnLogo {
+  display: inline-flex;
+  color: white;
+  gap: 15px;
+}

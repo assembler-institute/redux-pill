@@ -1,0 +1,14 @@
+@use "./assets/sass/variables" as v;
+
+.App {
+  min-height: 100vh;
+  background-color: v.$lightBlack;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.noBtn {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
