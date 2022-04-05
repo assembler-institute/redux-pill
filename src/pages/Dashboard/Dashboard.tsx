@@ -1,5 +1,13 @@
-import { Header } from "../../components/Header/Header";
+import { FilterForm } from "../../components/FilterForm/FilterForm";
+import { InputSearch } from "../../components/InputSearch/InputSearch";
+import "./dashboard.scss";
 
 export const Dashboard: React.FC = () => {
-  return <></>;
+  return (
+    <>
+      <main className="dashboardMain">
+        <FilterForm />
+      </main>
+    </>
+  );
 };
