@@ -1,6 +1,5 @@
 import "./filterForm.scss";
 import { Formik } from "formik";
-import { setPropertiesByCountryOrCity } from "../../redux/properties/actions";
 
 const initialValues: IFilterValues = {
   typeHome: "",
@@ -18,7 +17,6 @@ const initialValues: IFilterValues = {
 };
 
 export const FilterForm: React.FC = () => {
-  setPropertiesByCountryOrCity("asd");
   return (
     <>
       <h1 className="dashTitle">Filter dashboard:</h1>
