@@ -1,23 +1,6 @@
 import "./filterForm.scss";
 import { Formik } from "formik";
 import { setPropertiesByCountryOrCity } from "../../redux/properties/actions";
-type PriceRange = [number, number | null];
-type MoreFilters = {
-  heatingSystem: boolean;
-  coolingSystem: boolean;
-  hasPool: boolean;
-};
-
-interface IFilterValues {
-  typeHome: string;
-  conditions: string;
-  beedroms: number;
-  baths: number;
-  priceRange: PriceRange;
-  publishDate: string;
-  hasParking: boolean;
-  more: MoreFilters;
-}
 
 const initialValues: IFilterValues = {
   typeHome: "",
