@@ -9,7 +9,7 @@ export const reducer = (
 ) => {
   switch (action.type) {
     case types.FIRST_SEARCH:
-      return [action.payload];
+      return action.payload;
     default:
       return state;
   }

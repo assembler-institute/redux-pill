@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
 //actions
 import { setFirstSearch } from "../../redux/properties/actions";
-import { setValue } from "../../redux/searchValue/actions";
+import { setValue as setInputValue } from "../../redux/searchValue/actions";
+import { setIsLoading } from "../../redux/isLoading/reducer";
 // router hooks
 import { useLocation, useNavigate } from "react-router-dom";
 import glassIcon from "../../assets/img/glassIcon.png";
@@ -13,8 +14,11 @@ import { bindActionCreators } from "redux";
 export const InputSearch: React.FC = () => {
   //redux hooks
   const dispatch = useDispatch();
-  const actions = bindActionCreators({ setValue, setFirstSearch }, dispatch);
-  const inputValue = useSelector((state: RootState) => state.searchReducer);
+  const actions = bindActionCreators(
+    { setInputValue, setFirstSearch, setIsLoading },
+    dispatch
+  );
+  const inputValue = useSelector((state: RootState) => state.search);
 
   // router
   const { pathname } = useLocation();
@@ -23,10 +27,12 @@ export const InputSearch: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputValue === "") return console.log("input empty");
-    actions.setFirstSearch(inputValue);
     if (pathname === "/") {
       navigate("/dashboard");
     }
+    // first search with input
+    actions.setIsLoading(true);
+    actions.setFirstSearch(inputValue);
   };
 
   return (
@@ -37,7 +43,7 @@ export const InputSearch: React.FC = () => {
           <input
             className="inputSearch"
             value={inputValue}
-            onChange={(e) => actions.setValue(e.target.value)}
+            onChange={(e) => actions.setInputValue(e.target.value)}
             type="text"
             placeholder="City, country..."
           />

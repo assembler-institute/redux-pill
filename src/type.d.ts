@@ -6,7 +6,7 @@ interface ISearchAction {
 }
 interface IPropertieAction {
   type: string;
-  payload?: IPropertie[];
+  payload: IPropertie[];
 }
 
 interface IPropertie {
@@ -15,6 +15,7 @@ interface IPropertie {
   number: number;
   city: string;
   province: string;
+  image: string;
   country: string;
   status: statusPropertie;
   type: string;
