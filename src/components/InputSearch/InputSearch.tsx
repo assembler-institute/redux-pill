@@ -4,21 +4,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
 //actions
 import { setFirstSearch } from "../../redux/properties/actions";
-import { setValue as setInputValue } from "../../redux/searchValue/actions";
 import { setIsLoading } from "../../redux/isLoading/reducer";
 // router hooks
 import { useLocation, useNavigate } from "react-router-dom";
 import glassIcon from "../../assets/img/glassIcon.png";
 import { bindActionCreators } from "redux";
+import { useState } from "react";
 
 export const InputSearch: React.FC = () => {
+  const [inputValue, setInputValue] = useState<string>("");
   //redux hooks
   const dispatch = useDispatch();
   const actions = bindActionCreators(
-    { setInputValue, setFirstSearch, setIsLoading },
+    { setFirstSearch, setIsLoading },
     dispatch
   );
-  const inputValue = useSelector((state: RootState) => state.search);
 
   // router
   const { pathname } = useLocation();
@@ -43,7 +43,7 @@ export const InputSearch: React.FC = () => {
           <input
             className="inputSearch"
             value={inputValue}
-            onChange={(e) => actions.setInputValue(e.target.value)}
+            onChange={(e) => setInputValue(e.target.value)}
             type="text"
             placeholder="City, country..."
           />

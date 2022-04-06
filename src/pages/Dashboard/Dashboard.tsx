@@ -14,12 +14,12 @@ export const Dashboard: React.FC = () => {
   const dispatch = useDispatch();
   const dispatchIsLoading = bindActionCreators(setIsLoading, dispatch);
   const { properties, isLoading } = useSelector((state: RootState) => state);
-  console.log(properties);
   useEffect(() => {
     if (properties.length !== 0) {
       dispatchIsLoading(false);
     }
   }, [properties]);
+  console.log(properties);
   return (
     <>
       <main className="dashboardMain">

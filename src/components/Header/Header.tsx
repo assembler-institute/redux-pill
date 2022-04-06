@@ -6,7 +6,6 @@ import { InputSearch } from "../InputSearch/InputSearch";
 export const Header: React.FC = () => {
   const router = useNavigate();
   const { pathname } = useLocation();
-
   return (
     <header className="headerWrapper">
       <button className="HeaderBtnLogo noBtn" onClick={() => router("/")}>

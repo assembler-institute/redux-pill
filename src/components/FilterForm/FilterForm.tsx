@@ -1,18 +1,18 @@
 import "./filterForm.scss";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 
 const initialValues: IFilterValues = {
-  typeHome: "",
-  conditions: "",
-  beedroms: 2,
-  baths: 1,
+  type: "",
+  condition: "",
+  room: 2,
+  bath: 1,
   priceRange: [20000, null],
-  publishDate: "",
-  hasParking: false,
   more: {
-    hasPool: false,
-    heatingSystem: false,
-    coolingSystem: false,
+    pet: true,
+    garden: false,
+    air_conditioning: true,
+    swimming_pool: false,
+    terrace: true,
   },
 };
 

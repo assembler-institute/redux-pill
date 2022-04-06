@@ -1,5 +1,4 @@
 import { Dispatch } from "redux";
-import { boolean } from "yup";
 import { fetchProperties } from "../services/fetchProperties";
 import { FIRST_SEARCH } from "./types";
 
@@ -15,4 +14,8 @@ export const setFirstSearch = (value: string) => {
       payload: filteredProperties,
     });
   };
+};
+
+export const setSearchWithFilter = (formValues: any) => {
+  console.log(formValues);
 };

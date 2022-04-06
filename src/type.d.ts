@@ -1,9 +1,3 @@
-// search value reducer
-
-interface ISearchAction {
-  type: string;
-  payload: string;
-}
 interface IPropertieAction {
   type: string;
   payload: IPropertie[];
@@ -42,18 +36,18 @@ type PropertieState = IPropertie[] | [];
 type PriceRange = [number, number | null];
 
 type MoreFilters = {
-  heatingSystem: boolean;
-  coolingSystem: boolean;
-  hasPool: boolean;
+  pet: boolean;
+  garden: boolean;
+  air_conditioning: boolean;
+  swimming_pool: boolean;
+  terrace: boolean;
 };
 
 interface IFilterValues {
-  typeHome: string;
-  conditions: string;
-  beedroms: number;
-  baths: number;
+  type: string;
+  condition: string;
+  room: number;
+  bath: number;
   priceRange: PriceRange;
-  publishDate: string;
-  hasParking: boolean;
   more: MoreFilters;
 }
