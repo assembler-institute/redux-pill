@@ -1,0 +1,16 @@
+.filterForm {
+  margin: 35px 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+input {
+  width: 17px;
+  height: 17px;
+}
+.labelCheckbox {
+  display: block;
+  text-transform: capitalize;
+  margin-right: 15px;
+}

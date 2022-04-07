@@ -33,21 +33,19 @@ type statusPropertie = "available" | "sold";
 
 type PropertieState = IPropertie[] | [];
 
-type PriceRange = [number, number | null];
+type HomeType = "house" | "flat/apartment" | "duples" | "penthouse";
 
-type MoreFilters = {
-  pet: boolean;
-  garden: boolean;
-  air_conditioning: boolean;
-  swimming_pool: boolean;
-  terrace: boolean;
-};
-
-interface IFilterValues {
-  type: string;
-  condition: string;
-  room: number;
-  bath: number;
-  priceRange: PriceRange;
-  more: MoreFilters;
+type ConditionType = "new" | "good" | "need renovation";
+interface IFormFilter {
+  type: [HomeType] | [];
+  condition: [ConditionType] | [];
+  room: number | null;
+  bath: number | null;
+  price_gte: number | null;
+  price_lte: number | null;
+  pet: boolean | null;
+  garden: boolean | null;
+  air_conditioning: boolean | null;
+  swimming_pool: boolean | null;
+  terrace: boolean | null;
 }

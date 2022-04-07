@@ -1,21 +1,41 @@
 import { Dispatch } from "redux";
 import { fetchProperties } from "../services/fetchProperties";
-import { FIRST_SEARCH } from "./types";
+import { FILTERED_SEARCH, FIRST_SEARCH } from "./types";
 
 export const setFirstSearch = (value: string) => {
   return async (dispatch: Dispatch) => {
-    const data = await fetchProperties();
-    const filteredProperties = data.filter((propertie) => {
-      if (propertie.country === value) return propertie;
-      if (propertie.city === value) return propertie;
-    });
+    const properties = await fetchProperties(`city=${value}`);
+
     return dispatch({
       type: FIRST_SEARCH,
-      payload: filteredProperties,
+      payload: properties,
     });
   };
 };
 
-export const setSearchWithFilter = (formValues: any) => {
-  console.log(formValues);
+export const setSearchWithFilter = (formValues: IFormFilter) => {
+  return async (dispatch: Dispatch) => {
+    let query: string = "";
+    // getting object keys and values
+    const formKeys = Object.keys(formValues);
+    const values = Object.values(formValues);
+
+    formKeys.forEach((element, idx) => {
+      if (values[idx]) {
+        if (Array.isArray(values[idx])) {
+          values[idx].forEach((val: string) => {
+            query += `${element}=${val}&`;
+          });
+          return;
+        }
+        query += `${element}=${values[idx]}&`;
+      }
+    });
+    query = query.substring(0, query.length - 1);
+    const properties = await fetchProperties(query);
+    return dispatch({
+      type: FILTERED_SEARCH,
+      payload: properties,
+    });
+  };
 };

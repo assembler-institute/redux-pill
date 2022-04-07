@@ -10,6 +10,8 @@ export const reducer = (
   switch (action.type) {
     case types.FIRST_SEARCH:
       return action.payload;
+    case types.FILTERED_SEARCH:
+      return action.payload;
     default:
       return state;
   }

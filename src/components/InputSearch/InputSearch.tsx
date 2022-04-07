@@ -1,7 +1,6 @@
 import "./inputSearch.scss";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/reducers";
 //actions
 import { setFirstSearch } from "../../redux/properties/actions";
 import { setIsLoading } from "../../redux/isLoading/reducer";
