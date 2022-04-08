@@ -1,4 +1,4 @@
-import { string } from "yup";
+import { formatMoney } from "../../utils/formatMoney";
 
 interface Props {
   options: Array<number>;
@@ -7,14 +7,6 @@ interface Props {
   handleChange: (e: React.ChangeEvent) => void;
   submitForm: () => Promise<void>;
 }
-
-const formatMoney = (option: number): string => {
-  const formatter = new Intl.NumberFormat("es-ES", {
-    style: "currency",
-    currency: "EUR",
-  });
-  return formatter.format(option);
-};
 
 export const Select: React.FC<Props> = ({
   options,

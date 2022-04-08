@@ -1,5 +1,5 @@
 // hooks
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // styles
 import "./dashboard.scss";
 // redux
@@ -16,45 +16,59 @@ import { Loading } from "../../components/Loading/Loading";
 import { FilterForm } from "../../components/FilterForm/FilterForm";
 
 export const Dashboard: React.FC = () => {
+  const [error, setError] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const action = bindActionCreators(
+  const actions = bindActionCreators(
     { setIsLoading, setSearchWithFilter },
     dispatch
   );
-  const { properties, isLoading } = useSelector((state: RootState) => state);
+  const {
+    searcher: { properties, inputSearch },
+    isLoading,
+  } = useSelector((state: RootState) => state);
 
   // manage filter form
   const handleDispatchFilterForm = (form: IFormFilter) => {
-    action.setIsLoading(true);
-    action.setSearchWithFilter(form);
+    actions.setIsLoading(true);
+    actions.setSearchWithFilter(form);
   };
 
   useEffect(() => {
     if (properties.length === 0) {
-      console.log("search not found");
+      setError(true);
       return;
     }
-    action.setIsLoading(false);
+    setError(false);
+    actions.setIsLoading(false);
   }, [properties]);
-  console.log(properties);
+
   return (
     <>
       <main className="dashboardMain">
-        <FilterForm dispatch={handleDispatchFilterForm} />
-        {isLoading && <Loading />}
+        <FilterForm
+          inputSearch={inputSearch}
+          dispatch={handleDispatchFilterForm}
+        />
+        {isLoading && !error && <Loading />}
+        {error && <h2>No results found 🥲</h2>}
         {!isLoading && (
           <>
-            <h2>Results for</h2>
-            <PropertieCard
-              image={properties[0].image}
-              title={properties[0].type}
-              city={properties[0].city}
-              rooms={properties[0].room}
-              size={properties[0].size}
-              price={properties[0].price}
-              description={properties[0].description}
-              contactPhone={properties[0].contact_phone}
-            />
+            <h2>Results for {inputSearch}</h2>
+            <div className="propertiesWrapper">
+              {properties.map((propertie: IPropertie) => (
+                <PropertieCard
+                  key={propertie.id}
+                  image={propertie.image}
+                  title={propertie.type}
+                  city={propertie.city}
+                  rooms={propertie.room}
+                  size={propertie.size}
+                  price={propertie.price}
+                  description={propertie.description}
+                  contactPhone={propertie.contact_phone}
+                />
+              ))}
+            </div>
           </>
         )}
       </main>

@@ -1,3 +1,4 @@
+import { formatMoney } from "../../utils/formatMoney";
 import "./propertieCard.scss";
 
 interface Props {
@@ -25,7 +26,7 @@ export const PropertieCard: React.FC<Props> = ({
     <img src={image} alt="house" />
     <div className="propertieInfo">
       <h4 className="propertieTitle">{`${title}, ${city}`}</h4>
-      <span className="propertiePrice">{price}€</span>
+      <span className="propertiePrice">{formatMoney(price)}</span>
       <div className="propertieSpecsWrapper">
         <p>{rooms} rooms</p>
         <p>

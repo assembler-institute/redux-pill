@@ -1,4 +1,5 @@
 import "./filterForm.scss";
+// components
 import { Formik } from "formik";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { Select } from "../Select/Select";
@@ -27,6 +28,7 @@ const setPrices = (): Array<number> => {
 };
 interface Props {
   dispatch: (formValues: IFormFilter) => void;
+  inputSearch: string;
 }
 
 export const FilterForm: React.FC<Props> = ({ dispatch }) => {
@@ -121,7 +123,7 @@ export const FilterForm: React.FC<Props> = ({ dispatch }) => {
             <div className="priceWrapper">
               <h4>Price Range</h4>
               <Select
-                name="minPrice"
+                name="price_gte"
                 options={setPrices()}
                 handleChange={handleChange}
                 submitForm={submitForm}
@@ -129,7 +131,7 @@ export const FilterForm: React.FC<Props> = ({ dispatch }) => {
               />
               -
               <Select
-                name="maxPrice"
+                name="price_lte"
                 options={setPrices()}
                 handleChange={handleChange}
                 submitForm={submitForm}

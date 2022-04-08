@@ -1,7 +1,15 @@
-interface IPropertieAction {
+// action creators type for properties reducer
+
+interface FIRST_SEARCH {
+  type: string;
+  payload: any;
+}
+interface FILTERED_SEARCH {
   type: string;
   payload: IPropertie[];
 }
+
+type ActionProperties = FILTERED_SEARCH | FIRST_SEARCH;
 
 interface IPropertie {
   id: number;
@@ -31,7 +39,10 @@ interface IPropertie {
 
 type statusPropertie = "available" | "sold";
 
-type PropertieState = IPropertie[] | [];
+type PropertieState = {
+  inputSearch: string;
+  properties: IPropertie[] | [];
+};
 
 type HomeType = "house" | "flat/apartment" | "duples" | "penthouse";
 
