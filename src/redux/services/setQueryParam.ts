@@ -1,4 +1,4 @@
-export const setQueryParam = (form: IFormFilter): string => {
+export const setQueryParam = (form: IFormFilter, city: string): string => {
   let query: string = "";
   // getting object keys and values
   const formKeys = Object.keys(form);
@@ -16,5 +16,5 @@ export const setQueryParam = (form: IFormFilter): string => {
     }
   });
   query = query.substring(0, query.length - 1);
-  return query;
+  return `city=${city}&${query}`;
 };

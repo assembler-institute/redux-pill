@@ -30,7 +30,7 @@ export const Dashboard: React.FC = () => {
   // manage filter form
   const handleDispatchFilterForm = (form: IFormFilter) => {
     actions.setIsLoading(true);
-    actions.setSearchWithFilter(form);
+    actions.setSearchWithFilter(form, inputSearch);
   };
 
   useEffect(() => {
@@ -45,10 +45,7 @@ export const Dashboard: React.FC = () => {
   return (
     <>
       <main className="dashboardMain">
-        <FilterForm
-          inputSearch={inputSearch}
-          dispatch={handleDispatchFilterForm}
-        />
+        <FilterForm dispatch={handleDispatchFilterForm} />
         {isLoading && !error && <Loading />}
         {error && <h2>No results found 🥲</h2>}
         {!isLoading && (

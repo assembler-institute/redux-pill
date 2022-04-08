@@ -28,7 +28,6 @@ const setPrices = (): Array<number> => {
 };
 interface Props {
   dispatch: (formValues: IFormFilter) => void;
-  inputSearch: string;
 }
 
 export const FilterForm: React.FC<Props> = ({ dispatch }) => {
