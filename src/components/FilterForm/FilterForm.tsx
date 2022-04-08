@@ -102,10 +102,10 @@ export const FilterForm: React.FC<Props> = ({ dispatch }) => {
             </div>
 
             <div className="roomsWrapper">
-              <h4>Bedrooms</h4>
+              <h4>Rooms</h4>
               <Select
                 name="room"
-                options={[1, 2, 3]}
+                options={[1, 2, 3, 4, 5]}
                 handleChange={handleChange}
                 submitForm={submitForm}
               />
@@ -119,6 +119,7 @@ export const FilterForm: React.FC<Props> = ({ dispatch }) => {
                 submitForm={submitForm}
               />
             </div>
+
             <div className="priceWrapper">
               <h4>Price Range</h4>
               <Select

@@ -1,3 +1,4 @@
+import { string } from "yup";
 import { formatMoney } from "../../utils/formatMoney";
 
 interface Props {
@@ -15,6 +16,11 @@ export const Select: React.FC<Props> = ({
   handleChange,
   submitForm,
 }) => {
+  const handleDefaultName = (): string => {
+    if (priceFormat && name === "price_gte") return "Min price";
+    if (priceFormat && name === "price_lte") return "Max price";
+    return `Any ${name}`;
+  };
   return (
     <select
       name={name}
@@ -24,9 +30,7 @@ export const Select: React.FC<Props> = ({
         submitForm();
       }}
     >
-      <option value="default" disabled hidden>
-        {name}
-      </option>
+      <option value="null">{handleDefaultName()}</option>
       {options.map((option, idx) => (
         <option key={idx} value={option}>
           {priceFormat ? formatMoney(option) : option}

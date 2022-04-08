@@ -1,5 +1,4 @@
 import { Dispatch } from "redux";
-import { string } from "yup";
 import { fetchProperties } from "../services/fetchProperties";
 import { setQueryParam } from "../services/setQueryParam";
 import { FILTERED_SEARCH, FIRST_SEARCH } from "./types";

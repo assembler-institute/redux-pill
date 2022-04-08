@@ -17,6 +17,7 @@ import { FilterForm } from "../../components/FilterForm/FilterForm";
 
 export const Dashboard: React.FC = () => {
   const [error, setError] = useState<boolean>(false);
+  // redux init
   const dispatch = useDispatch();
   const actions = bindActionCreators(
     { setIsLoading, setSearchWithFilter },
