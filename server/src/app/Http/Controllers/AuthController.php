@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends BaseController
@@ -29,7 +31,7 @@ class AuthController extends BaseController
         $user = User::create($input);
 
         $success["token"] = $user->createToken("loginToken")->plainTextToken;
-        $success["name"] = "$user->firstName $user->lastName";
+        $success["fullName"] = "$user->firstName $user->lastName";
 
 
         
@@ -37,6 +39,15 @@ class AuthController extends BaseController
     }
 
     public function login(Request $request){
-        
+        if(Auth::attempt(["email"=>$request->email, "password"=>$request->password])){
+            $authUser = Auth::user();
+            $user = User::find($authUser->id);
+            $success["token"] = $user->createToken("loginToken")->plainTextToken;
+            $success["fullName"] = "$user->firstName $user->lastName";
+            return $this->sendResponse($success,"User logged",200);
+        }else{
+            return $this->sendError("Error","Failed to authenticate",400);
+        }
+
     }
 }
